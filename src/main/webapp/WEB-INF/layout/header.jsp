@@ -26,7 +26,7 @@
 					</security:authorize>
 					<security:authorize access="!isAuthenticated()">
 						<a href="/login" type="button" class="btn btn-primary navbar-btn">Log In</a>
-						<a type="button" class="btn btn-success navbar-btn" name="signup">Sign Up</a>
+						<a type="button" class="btn btn-success navbar-btn">Sign Up</a>
 					</security:authorize>
 				</div>
 			</div>

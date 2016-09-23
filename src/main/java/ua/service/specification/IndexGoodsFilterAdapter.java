@@ -14,7 +14,6 @@ import org.springframework.data.jpa.domain.Specifications;
 
 import ua.DTO.FilterForms.IndexGoodsFilterForm;
 import ua.entity.Goods;
-import ua.entity.Tag;
 
 public class IndexGoodsFilterAdapter implements Specification<Goods> {
 
