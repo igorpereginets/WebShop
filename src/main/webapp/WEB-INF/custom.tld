@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE xml>
+<taglib>
+	<tlib-version>1.1</tlib-version>
+	<jsp-version>2.2</jsp-version>
+	<short-name>Hide TLD</short-name>
+	<tag>
+		<name>hiddenInputs</name>
+		<tag-class>ua.service.tag.HiddenInputs</tag-class>
+		<body-content>empty</body-content>
+		<attribute>
+			<name>excludeParams</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+	</tag>
+	<tag>
+		<name>allParams</name>
+		<tag-class>ua.service.tag.AllParams</tag-class>
+		<body-content>empty</body-content>
+		<attribute>
+			<name>change</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<name>value</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+	</tag>
+	<tag>
+		<name>isActive</name>
+		<tag-class>ua.service.tag.Active</tag-class>
+		<body-content>empty</body-content>
+		<attribute>
+			<name>key</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<name>value</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+	</tag>
+</taglib>

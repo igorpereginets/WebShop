@@ -1,0 +1,218 @@
+.navbar {
+	margin-bottom: 5px;
+}
+
+.slider {
+	margin-top: 60px;
+	margin-bottom: 5px;
+}
+
+.content {
+	margin-top: 10px;
+	margin-bottom: 5px;
+}
+
+.navbar-brand {
+	padding-top: 5px;
+}
+
+.navbar-form {
+	margin-top: 0;
+	margin-bottom: 0;
+}
+
+.glyphicon {
+	padding-right: 5px;
+	font-size: 12pt;
+}
+
+a.category, a.brands, a.account-info {
+	text-decoration: none;
+}
+
+.contact-us, .help-me, .about-us {
+	padding: 10px;
+}
+
+.price {
+	font-size: 17pt;
+	color: green;
+	position: relative;
+	bottom: -10px;
+}
+
+.definition {
+	height: 100px;
+}
+
+.commodity:hover {
+	text-decoration: none;
+}
+
+.goodsPhoto {
+	min-height: 235px;
+	max-height: 235px;
+	height: 235px;
+}
+
+.thumbnail {
+	height: auto;
+}
+
+.description {
+	height: 100px; 
+	min-height: 100px; 
+	max-height: 100px; 
+}
+
+.product{
+	border: 1px solid #dddddd;
+	height: 321px;
+}
+
+.product>img{
+	max-width: 230px;
+}
+
+.product-rating{
+	font-size: 20px;
+	margin-bottom: 25px;
+}
+
+.product-title{
+	font-size: 20px;
+}
+
+.product-desc{
+	font-size: 14px;
+}
+
+.product-price{
+	font-size: 22px;
+}
+
+.product-stock{
+	color: #74DF00;
+	font-size: 20px;
+	margin-top: 10px;
+}
+
+.product-info{
+		margin-top: 50px;
+}
+
+/*********************************************
+					VIEW
+*********************************************/
+
+.content {
+	margin-top: 60px;
+}
+
+.content-wrapper {
+	/*max-width: 1140px;*/
+	background: #fff;
+	margin: 0 auto;
+	margin-top: 25px;
+	margin-bottom: 10px;
+	border: 0px;
+	border-radius: 0px;
+}
+
+/*.container-fluid{
+	max-width: 1140px;
+	margin: 0 auto;
+}*/
+
+.view-wrapper {
+	float: right;
+	max-width: 70%;
+	margin-top: 25px;
+}
+
+.container {
+	padding-left: 0px;
+	padding-right: 0px;
+	max-width: 100%;
+}
+
+/*********************************************
+				ITEM 
+*********************************************/
+
+.service1-items {
+	padding: 0px 0 0px 0;
+	float: left;
+	position: relative;
+	overflow: hidden;
+	max-width: 100%;
+	height: 321px;
+	width: 130px;
+}
+
+.service1-item {
+	height: 107px;
+	width: 120px;
+	display: block;
+	float: left;
+	position: relative;
+	padding-right: 20px;
+	border-right: 1px solid #DDD;
+	border-top: 1px solid #DDD;
+	border-bottom: 1px solid #DDD;
+}
+
+.service1-item > img {
+	max-height: 110px;
+	max-width: 110px;
+	opacity: 0.6;
+	transition: all .2s ease-in;
+	-o-transition: all .2s ease-in;
+	-moz-transition: all .2s ease-in;
+	-webkit-transition: all .2s ease-in;
+}
+
+.service1-item > img:hover {
+	cursor: pointer;
+	opacity: 1;
+}
+
+.service-image-left {
+	padding-right: 50px;
+}
+
+.service-image-right {
+	padding-left: 50px;
+}
+
+.service-image-left > center > img,.service-image-right > center > img{
+	max-height: 155px;
+}
+
+.col-md-3 {
+    width: auto; 
+}
+
+.createInput {
+	width: 100%;
+	font-size: 18pt;
+	padding: 2px 5px;
+	margin: 5px;
+}
+
+.createForm label {
+	font-size: 16pt;
+	margin-top: 15px;
+}
+
+.fileInput {
+	margin: 18px 5px;
+}
+
+.createForm [type=button] {
+	min-width: 100px;
+	min-height: 40px;
+	font-size: 16pt;
+	margin: 10px;
+	padding: 3px;
+}

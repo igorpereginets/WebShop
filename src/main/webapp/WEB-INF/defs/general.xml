@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE tiles-definitions PUBLIC
+      "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
+      "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+<tiles-definitions>
+	<!-- Some templates -->
+	<definition name="common" template="/WEB-INF/layout/classic.jsp">
+		<put-attribute name="header" value="/WEB-INF/layout/header.jsp" />
+		<put-attribute name="title" value="elimSShop" />
+	</definition>
+
+	<definition name="adminka" template="/WEB-INF/layout/admin-classic.jsp">
+		<put-attribute name="title" value="Admin" />
+		<put-attribute name="header" value="/WEB-INF/layout/admin-header.jsp"></put-attribute>
+	</definition>
+
+	<definition name="index" extends="common">
+		<put-attribute name="body" value="/WEB-INF/views/index.jsp" />
+	</definition>
+
+	<definition name="countries" extends="adminka">
+		<put-attribute name="body" value="/WEB-INF/views/countries.jsp" />
+		<put-attribute name="current" value="countries" />
+	</definition>
+	
+	<definition name="cities" extends="adminka">
+		<put-attribute name="body" value="/WEB-INF/views/cities.jsp" />
+	</definition>
+	
+	<definition name="address" extends="adminka">
+		<put-attribute name="body" value="/WEB-INF/views/address.jsp" />
+	</definition>
+	
+	<definition name="users" extends="adminka">
+		<put-attribute name="body" value="/WEB-INF/views/users.jsp" />
+	</definition>
+	
+	<definition name="categories" extends="adminka">
+		<put-attribute name="body" value="/WEB-INF/views/categories.jsp" />
+	</definition>
+	
+	<definition name="states" extends="adminka">
+		<put-attribute name="body" value="/WEB-INF/views/states.jsp" />
+	</definition>
+	
+	<definition name="brands" extends="adminka">
+		<put-attribute name="body" value="/WEB-INF/views/brands.jsp" />
+	</definition>
+	
+	<definition name="status" extends="adminka">
+		<put-attribute name="body" value="/WEB-INF/views/status.jsp" />
+	</definition>
+	
+	<definition name="goods" extends="adminka">
+		<put-attribute name="body" value="/WEB-INF/views/goods.jsp" />
+	</definition>
+	
+	<definition name="tags" extends="adminka">
+		<put-attribute name="body" value="/WEB-INF/views/tags.jsp" />
+	</definition>
+	
+	<definition name="buckets" extends="adminka">
+		<put-attribute name="body" value="/WEB-INF/views/buckets.jsp" />
+	</definition>
+	
+	<definition name="showGoods" extends="common">
+		<put-attribute name="body" value="/WEB-INF/views/showGoods.jsp" />
+	</definition>
+	
+	<definition name="login" extends="common">
+		<put-attribute name="header" value="" />
+		<put-attribute name="body" value="/WEB-INF/views/login.jsp" />
+	</definition>
+
+</tiles-definitions>
