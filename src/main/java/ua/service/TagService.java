@@ -51,4 +51,8 @@ public class TagService {
 	public Tag findByName(String name) {
 		return tagRepository.findByName(name);
 	}
+
+	public Tag findOne(int id) {
+		return tagRepository.findOne(id);
+	}
 }

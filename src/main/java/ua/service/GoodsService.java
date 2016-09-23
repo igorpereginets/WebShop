@@ -44,6 +44,7 @@ public class GoodsService {
 		good.setShortDescription(goodsSaveForm.getShortDescription());
 		good.setState(goodsSaveForm.getState());
 		good.setUser(goodsSaveForm.getUser());
+		good.setTags(goodsSaveForm.getTags());
 
 		good.setActive(true);
 		if (goodsSaveForm.getBegin() == null)
@@ -66,7 +67,7 @@ public class GoodsService {
 	}
 
 	public GoodsSaveForm findWithSaveForm(int id) {
-		Goods good = goodsRepository.findOne(id);
+		Goods good = goodsRepository.findOneWithTags(id);
 		GoodsSaveForm goodsSaveForm = new GoodsSaveForm();
 		goodsSaveForm.setId(good.getId());
 		goodsSaveForm.setAmount(good.getAmount());
@@ -78,6 +79,7 @@ public class GoodsService {
 		goodsSaveForm.setShortDescription(good.getShortDescription());
 		goodsSaveForm.setState(good.getState());
 		goodsSaveForm.setUser(good.getUser());
+		goodsSaveForm.setTags(good.getTags());
 
 		goodsSaveForm.setBegin(good.getBegin());
 		goodsSaveForm.setEnd(good.getEnd());

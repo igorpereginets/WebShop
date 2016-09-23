@@ -1,12 +1,14 @@
 package ua.DTO.SaveForms;
 
 import java.time.LocalDate;
+import java.util.List;
 
 import org.springframework.web.multipart.MultipartFile;
 
 import ua.entity.Brand;
 import ua.entity.Category;
 import ua.entity.State;
+import ua.entity.Tag;
 import ua.entity.User;
 
 public class GoodsSaveForm {
@@ -27,6 +29,7 @@ public class GoodsSaveForm {
 	private Boolean active;
 	private MultipartFile file;
 	private String pathToFile;
+	private List<Tag> tags;
 
 	public int getId() {
 		return id;
@@ -148,6 +151,16 @@ public class GoodsSaveForm {
 	
 	public void setPathToFile(String pathToFile) {
 		this.pathToFile = pathToFile;
+	}
+
+	
+	public List<Tag> getTags() {
+		return tags;
+	}
+
+	
+	public void setTags(List<Tag> tags) {
+		this.tags = tags;
 	}
 
 }

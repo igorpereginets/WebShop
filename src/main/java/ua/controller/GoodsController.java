@@ -1,9 +1,12 @@
 package ua.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.propertyeditors.CustomCollectionEditor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
@@ -28,6 +31,7 @@ import ua.service.BrandService;
 import ua.service.CategoryService;
 import ua.service.GoodsService;
 import ua.service.StateService;
+import ua.service.TagService;
 import ua.service.UserService;
 import ua.service.editors.BrandEditor;
 import ua.service.editors.CategoryEditor;
@@ -48,6 +52,8 @@ public class GoodsController {
 	private CategoryService categoryService;
 	@Autowired
 	private BrandService brandService;
+	@Autowired
+	private TagService tagService;
 
 	@ModelAttribute("goodsSaveForm")
 	public GoodsSaveForm getForm() {
@@ -65,6 +71,18 @@ public class GoodsController {
 		binder.registerCustomEditor(Brand.class, new BrandEditor(brandService));
 		binder.registerCustomEditor(State.class, new StateEditor(stateService));
 		binder.registerCustomEditor(User.class, new UserEditor(userService));
+		binder.registerCustomEditor(List.class, "tags", new CustomCollectionEditor(List.class) {
+
+			@Override
+			protected Object convertElement(Object element) {
+				String tagId = (String) element;
+				if(tagId == null || tagId.isEmpty())
+					return null;
+				else
+					return tagService.findOne(Integer.parseInt(tagId));
+			}
+			
+		});
 	}
 
 	@InitBinder("goodsSaveForm")
@@ -81,6 +99,7 @@ public class GoodsController {
 		model.addAttribute("states", stateService.findAll());
 		model.addAttribute("categories", categoryService.findAll());
 		model.addAttribute("brands", brandService.findAll());
+		model.addAttribute("tags", tagService.findAll());
 		return "goods";
 	}
 
@@ -111,6 +130,7 @@ public class GoodsController {
 		model.addAttribute("states", stateService.findAll());
 		model.addAttribute("categories", categoryService.findAll());
 		model.addAttribute("brands", brandService.findAll());
+		model.addAttribute("tags", tagService.findAll());
 		return "goods";
 	}
 
