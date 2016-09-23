@@ -49,7 +49,7 @@
 			</div>
 			<div class="panel-body">
 				<form:form action="/" modelAttribute="filter" method="get" name="searchForm">
-					<custom:hiddenInputs excludeParams="nameSearch, minPrice, maxPrice, minAmount, maxAmount, brandSearch, categorySearch" />
+					<custom:hiddenInputs excludeParams="nameSearch, minPrice, maxPrice, minAmount, maxAmount, brandSearch, categorySearch, tagSearch" />
 					<div class="col-md-4 col-sm-12">
 						<form:input type="search" path="nameSearch" class="form-control" placeholder="Search name..." />
 					</div>
@@ -71,7 +71,10 @@
 					<div class="col-md-4 col-sm-12">
 						<form:input type="search" path="categorySearch" class="form-control" placeholder="Search category..." />
 					</div>
-					<button type="submit" class="hidden"></button>
+					<div class="col-md-4 col-sm-12">
+						<form:input type="search" path="tagSearch" class="form-control" placeholder="Search by tag..." />
+					</div>
+					<button type="submit" class="btn btn-primary pull-right">Search</button>
 				</form:form>
 			</div>
 		</div>
@@ -156,6 +159,16 @@
 			<div class="panel-body">
 				<h5>No Products...</h5>
 				<button type="button" class="btn btn-primary navbar-btn">Check Out</button>
+			</div>
+		</div>
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h3 class="panel-title">Tags</h3>
+			</div>
+			<div class="panel-body">
+				<c:forEach items="${tags}" var="tag">
+					<li class="list-group-item"><a href="?tagSearch=${tag.name}"> ${tag.name} </a></li>
+				</c:forEach>
 			</div>
 		</div>
 	</div>

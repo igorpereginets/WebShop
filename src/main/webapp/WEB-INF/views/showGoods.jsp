@@ -33,8 +33,8 @@
 			</div>
 			<div class="panel-body">
 				<ul class="list-group">
-					<c:forEach items="${producers}" var="producer">
-						<li class="list-group-item"><a href="/" class="brands"> ${producer.name} </a></li>
+					<c:forEach items="${brands}" var="brand">
+						<li class="list-group-item"><a href="/" class="brands"> ${brand.name} </a></li>
 					</c:forEach>
 				</ul>
 			</div>
@@ -109,6 +109,16 @@
 			<div class="panel-body">
 				<h5>No Products...</h5>
 				<button type="button" class="btn btn-primary navbar-btn">Check Out</button>
+			</div>
+		</div>
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h3 class="panel-title">Tags</h3>
+			</div>
+			<div class="panel-body">
+				<c:forEach items="${tags}" var="tag">
+					<li class="list-group-item"><a href="?tagSearch=${tag.name}"> ${tag.name} </a></li>
+				</c:forEach>
 			</div>
 		</div>
 	</div>

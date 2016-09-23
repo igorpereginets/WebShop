@@ -9,6 +9,7 @@ public class IndexGoodsFilterForm {
 	private Integer maxAmount;
 	private String brandSearch;
 	private String categorySearch;
+	private String tagSearch;
 
 	public String getNameSearch() {
 		return nameSearch;
@@ -64,6 +65,16 @@ public class IndexGoodsFilterForm {
 
 	public void setCategorySearch(String categorySearch) {
 		this.categorySearch = categorySearch;
+	}
+
+	
+	public String getTagSearch() {
+		return tagSearch;
+	}
+
+	
+	public void setTagSearch(String tagSearch) {
+		this.tagSearch = tagSearch;
 	}
 
 }

@@ -110,4 +110,8 @@ public class GoodsService {
 	public Page<Goods> findAll(Pageable pageable, IndexGoodsFilterForm filter) {
 		return goodsRepository.findAll(new IndexGoodsFilterAdapter(filter), pageable);
 	}
+
+	public Goods findOne(int id) {
+		return goodsRepository.findOne(id);
+	}
 }

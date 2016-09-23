@@ -14,6 +14,7 @@ import org.springframework.data.jpa.domain.Specifications;
 
 import ua.DTO.FilterForms.IndexGoodsFilterForm;
 import ua.entity.Goods;
+import ua.entity.Tag;
 
 public class IndexGoodsFilterAdapter implements Specification<Goods> {
 
@@ -35,6 +36,7 @@ public class IndexGoodsFilterAdapter implements Specification<Goods> {
 		filterByAmount();
 		filterByBrand();
 		filterByCategory();
+//		filterByTag();
 		if (!filters.isEmpty()) {
 			Specifications<Goods> specifications = Specifications.where(filters.get(0));
 			for (Specification<Goods> filter : filters) {
@@ -44,6 +46,19 @@ public class IndexGoodsFilterAdapter implements Specification<Goods> {
 		}
 		return null;
 	}
+
+	//TODO Filtering by tags
+//	private void filterByTag() {
+//		String tagSearch = form.getTagSearch();
+//		Tag tag = new Tag();
+//		tag.setName(tagSearch);
+//		if(tagSearch != null && !tagSearch.isEmpty()) {
+//			filters.add((root, query, cb) -> {
+//				Expression<List<Tag>> tagsExp = root.get("tags");
+//				return cb.isMember(tag, tagsExp);
+//			});
+//		}
+//	}
 
 	private void filterByCategory() {
 		String category = form.getCategorySearch();
