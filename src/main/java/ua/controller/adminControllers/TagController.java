@@ -1,4 +1,4 @@
-package ua.controller;
+package ua.controller.adminControllers;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
@@ -21,7 +21,7 @@ import ua.DTO.FilterForms.adminFilter.TagFilterForm;
 import ua.DTO.SaveForms.TagSaveForm;
 import ua.entity.Tag;
 import ua.service.TagService;
-import ua.service.validators.TagValidator;
+import ua.service.validators.adminValidators.TagValidator;
 
 @Controller
 public class TagController {

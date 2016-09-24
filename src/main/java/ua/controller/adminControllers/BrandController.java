@@ -1,4 +1,4 @@
-package ua.controller;
+package ua.controller.adminControllers;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;

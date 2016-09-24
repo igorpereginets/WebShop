@@ -1,4 +1,4 @@
-package ua.controller;
+package ua.controller.adminControllers;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
@@ -22,7 +22,7 @@ import ua.DTO.SaveForms.CategorySaveForm;
 import ua.entity.Category;
 import ua.service.CategoryService;
 import ua.service.editors.CategoryEditor;
-import ua.service.validators.CategoryValidator;
+import ua.service.validators.adminValidators.CategoryValidator;
 
 @Controller
 public class CategoryController {

@@ -1,4 +1,4 @@
-package ua.service.validators;
+package ua.service.validators.adminValidators;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;

@@ -1,4 +1,4 @@
-package ua.service.validators;
+package ua.service.validators.adminValidators;
 
 import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;

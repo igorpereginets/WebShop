@@ -1,4 +1,4 @@
-package ua.controller;
+package ua.controller.adminControllers;
 
 import java.util.List;
 
@@ -37,7 +37,7 @@ import ua.service.editors.BrandEditor;
 import ua.service.editors.CategoryEditor;
 import ua.service.editors.StateEditor;
 import ua.service.editors.UserEditor;
-import ua.service.validators.GoodsValidator;
+import ua.service.validators.adminValidators.GoodsValidator;
 
 @Controller
 public class GoodsController {

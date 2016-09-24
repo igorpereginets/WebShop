@@ -1,4 +1,4 @@
-package ua.controller;
+package ua.controller.adminControllers;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
@@ -21,7 +21,7 @@ import ua.DTO.FilterForms.adminFilter.CountryFilterForm;
 import ua.DTO.SaveForms.CountrySaveForm;
 import ua.entity.Country;
 import ua.service.CountryService;
-import ua.service.validators.CountryValidator;
+import ua.service.validators.adminValidators.CountryValidator;
 
 @Controller
 public class CountryController {

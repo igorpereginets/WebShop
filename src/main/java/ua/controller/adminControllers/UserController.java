@@ -1,4 +1,4 @@
-package ua.controller;
+package ua.controller.adminControllers;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
@@ -24,7 +24,7 @@ import ua.entity.User;
 import ua.service.AddressService;
 import ua.service.UserService;
 import ua.service.editors.AddressEditor;
-import ua.service.validators.UserValidator;
+import ua.service.validators.adminValidators.UserValidator;
 
 @Controller
 public class UserController {

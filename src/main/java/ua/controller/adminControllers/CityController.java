@@ -1,4 +1,4 @@
-package ua.controller;
+package ua.controller.adminControllers;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
@@ -24,7 +24,7 @@ import ua.entity.Country;
 import ua.service.CityService;
 import ua.service.CountryService;
 import ua.service.editors.CountryEditor;
-import ua.service.validators.CityValidator;
+import ua.service.validators.adminValidators.CityValidator;
 
 @Controller
 public class CityController {

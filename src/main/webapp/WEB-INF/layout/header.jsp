@@ -29,7 +29,7 @@
 					</form>
 				</security:authorize>
 				<security:authorize access="!isAuthenticated()">
-					<form action="/login" class="navbar-right navbar-form">
+					<form action="/registration" class="navbar-right navbar-form">
 						<button type="submit" class="btn btn-success navbar-btn">Sign Up</button>
 					</form>
 					<form action="/login" class="navbar-right navbar-form">
@@ -40,36 +40,104 @@
 		</nav>
 	</div>
 </div>
-<div class="row slider">
-	<div class="container-fluid">
-		<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
-			<!-- 			Indicators -->
-			<ol class="carousel-indicators">
-				<li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
-				<li data-target="#carousel-example-generic" data-slide-to="1"></li>
-				<li data-target="#carousel-example-generic" data-slide-to="2"></li>
-			</ol>
-			<!-- 			Wrapper for slides -->
-			<div class="carousel-inner" role="listbox">
-				<div class="item active">
-					<img src="/resources/img/head-onlineMarketing.jpg" height="600" width="2000" alt="...">
-					<div class="carousel-caption">...</div>
-				</div>
-				<div class="item">
-					<img src="/resources/img/head-SEO.jpg" height="600" width="2000" alt="...">
-					<div class="carousel-caption">...</div>
-				</div>
-				<div class="item">
-					<img src="/resources/img/help-hero-banner.jpg" height="600" width="2000" alt="...">
-					<div class="carousel-caption">...</div>
+<div class="modal fade contact" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+	<div class="modal-dialog modal-sm" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<div class="modal-title">
+					<h4 class="modal-title" id="myModalLabel">Contact Us</h4>
 				</div>
 			</div>
-			<!-- 			Controls -->
-			<a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev"> <span
-				class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span> <span class="sr-only">Previous</span>
-			</a> <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next"> <span
-				class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> <span class="sr-only">Next</span>
-			</a>
+			<p class="contact-us">
+				Made by Igor Pereginets><br />E-mail: example@exam.ua<br />Skype: skypeLogin<br />Country: Ukraine<br />City: Lviv<br />Street: ....
+			</p>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="modal fade help" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+	<div class="modal-dialog modal-lg" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<div class="modal-title">
+					<h4 class="modal-title" id="myModalLabel">Help</h4>
+				</div>
+			</div>
+			<p class="help-me">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Praesentium alias asperiores eos voluptatibus fuga sed vitae
+				neque, mollitia, iusto velit et fugiat quibusdam voluptas ratione numquam quis nulla earum quo. Obcaecati nemo, sed quod debitis repellendus.
+				Placeat officia, nesciunt illo. Tenetur adipisci possimus architecto reprehenderit saepe, aut consequatur delectus officiis distinctio iste quos
+				necessitatibus eum excepturi, perspiciatis laboriosam quas. Modi dolores, aut tempora saepe voluptatibus. Pariatur ipsum consectetur voluptatum
+				quod earum delectus fugiat reiciendis? Odit nemo tenetur, consequatur iste, soluta cumque earum voluptates deleniti perspiciatis aperiam
+				distinctio, quae consectetur. Earum hic aperiam atque consectetur dolore quibusdam quasi id expedita explicabo, iste, facere aut error molestiae
+				debitis illum fugit nostrum recusandae animi, veritatis ipsam eum. Obcaecati magni eum, minima debitis vel omnis corporis, eaque tempora optio
+				eius earum quod nihil dolor fugiat doloremque harum eveniet voluptas, praesentium, sunt consequatur. Debitis architecto dolor aut harum, tenetur
+				quidem delectus suscipit itaque natus iste pariatur saepe cupiditate? Sunt aliquid vero sit maiores molestias praesentium velit eligendi
+				recusandae voluptate iure odit consequatur ea consequuntur, quos debitis ullam a nisi, voluptatibus inventore reprehenderit reiciendis labore, id.
+				At, quas harum voluptate iste, aliquid soluta ab iure tenetur, dicta enim ratione reiciendis itaque dolore adipisci porro aliquam quam quia?
+				Dolor, repudiandae, impedit, illo ea quae deserunt iste quas commodi reprehenderit sapiente tenetur consequuntur? Aperiam deleniti dolores dolor
+				ipsum deserunt repudiandae doloremque, consequatur voluptates vero eligendi accusantium. In voluptatibus laboriosam ullam ducimus, officia. Saepe
+				corrupti enim quas debitis totam similique assumenda, ullam doloremque doloribus, voluptatum deleniti odit autem libero! Quod quasi error a quo
+				architecto ratione recusandae veniam dicta, corporis adipisci vel quae fugiat quibusdam illum reprehenderit, assumenda reiciendis alias,
+				perferendis possimus! Odit veniam autem sapiente, inventore adipisci maiores voluptatum, molestiae possimus aliquid quia nostrum, sint distinctio
+				facilis dolorum nisi! Blanditiis aperiam quo quis enim omnis praesentium, fugit explicabo, earum! Voluptatibus aperiam provident quisquam, dolor,
+				totam beatae laboriosam inventore et sapiente. Architecto dicta facere modi suscipit impedit, repudiandae eligendi dignissimos numquam,
+				consequuntur quia illo fugiat officia. Recusandae aspernatur ut dignissimos perferendis temporibus quo id? Quam blanditiis fugiat, officia eius
+				consectetur accusantium aliquid, beatae vitae ipsum cum deserunt modi perferendis. Iure numquam incidunt atque quis accusantium aliquid, quia
+				consectetur ipsa corporis voluptates doloremque enim nesciunt sequi. Quis blanditiis, debitis delectus incidunt laborum nihil facere at impedit
+				explicabo, doloribus asperiores itaque, eaque consectetur sit saepe illum provident non vero! Architecto dignissimos voluptas, aperiam doloremque
+				officia blanditiis optio, perspiciatis tempora vitae officiis, facilis quas cupiditate possimus, animi! Repudiandae labore minus sequi iusto ipsam
+				consequatur nisi praesentium harum vero alias facere tenetur tempore reprehenderit perspiciatis quas voluptate porro earum dolores voluptatum
+				voluptates veniam, pariatur quis quisquam hic. Ratione quidem obcaecati amet praesentium iure laudantium nihil ad distinctio totam a dicta sint et
+				perferendis eligendi officiis iste, quis, culpa. Temporibus dolorum culpa cum, quis a ratione neque totam tempora blanditiis sint quia labore,
+				distinctio voluptate debitis in odio, quas deserunt laudantium. Itaque laborum, quis nesciunt modi nobis ducimus cum corporis, quam, rem illum
+				ipsum, eum! Commodi iure, reiciendis ex dolor impedit dolorem voluptas atque.</p>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="modal fade about" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+	<div class="modal-dialog modal-lg" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<div class="modal-title">
+					<h4 class="modal-title" id="myModalLabel">About</h4>
+				</div>
+			</div>
+			<p class="about-us">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Praesentium alias asperiores eos voluptatibus fuga sed vitae
+				neque, mollitia, iusto velit et fugiat quibusdam voluptas ratione numquam quis nulla earum quo. Obcaecati nemo, sed quod debitis repellendus.
+				Placeat officia, nesciunt illo. Tenetur adipisci possimus architecto reprehenderit saepe, aut consequatur delectus officiis distinctio iste quos
+				necessitatibus eum excepturi, perspiciatis laboriosam quas. Modi dolores, aut tempora saepe voluptatibus. Pariatur ipsum consectetur voluptatum
+				quod earum delectus fugiat reiciendis? Odit nemo tenetur, consequatur iste, soluta cumque earum voluptates deleniti perspiciatis aperiam
+				distinctio, quae consectetur. Earum hic aperiam atque consectetur dolore quibusdam quasi id expedita explicabo, iste, facere aut error molestiae
+				debitis illum fugit nostrum recusandae animi, veritatis ipsam eum. Obcaecati magni eum, minima debitis vel omnis corporis, eaque tempora optio
+				eius earum quod nihil dolor fugiat doloremque harum eveniet voluptas, praesentium, sunt consequatur. Debitis architecto dolor aut harum, tenetur
+				quidem delectus suscipit itaque natus iste pariatur saepe cupiditate? Sunt aliquid vero sit maiores molestias praesentium velit eligendi
+				recusandae voluptate iure odit consequatur ea consequuntur, quos debitis ullam a nisi, voluptatibus inventore reprehenderit reiciendis labore, id.
+				At, quas harum voluptate iste, aliquid soluta ab iure tenetur, dicta enim ratione reiciendis itaque dolore adipisci porro aliquam quam quia?
+				Dolor, repudiandae, impedit, illo ea quae deserunt iste quas commodi reprehenderit sapiente tenetur consequuntur? Aperiam deleniti dolores dolor
+				ipsum deserunt repudiandae doloremque, consequatur voluptates vero eligendi accusantium. In voluptatibus laboriosam ullam ducimus, officia. Saepe
+				corrupti enim quas debitis totam similique assumenda, ullam doloremque doloribus, voluptatum deleniti odit autem libero! Quod quasi error a quo
+				architecto ratione recusandae veniam dicta, corporis adipisci vel quae fugiat quibusdam illum reprehenderit, assumenda reiciendis alias,
+				perferendis possimus! Odit veniam autem sapiente, inventore adipisci maiores voluptatum, molestiae possimus aliquid quia nostrum, sint distinctio
+				facilis dolorum nisi! Blanditiis aperiam quo quis enim omnis praesentium, fugit explicabo, earum! Voluptatibus aperiam provident quisquam, dolor,
+				totam beatae laboriosam inventore et sapiente. Architecto dicta facere modi suscipit impedit, repudiandae eligendi dignissimos numquam,
+				consequuntur quia illo fugiat officia. Recusandae aspernatur ut dignissimos perferendis temporibus quo id? Quam blanditiis fugiat, officia eius
+				consectetur accusantium aliquid, beatae vitae ipsum cum deserunt modi perferendis. Iure numquam incidunt atque quis accusantium aliquid, quia
+				consectetur ipsa corporis voluptates doloremque enim nesciunt sequi. Quis blanditiis, debitis delectus incidunt laborum nihil facere at impedit
+				explicabo, doloribus asperiores itaque, eaque consectetur sit saepe illum provident non vero! Architecto dignissimos voluptas, aperiam doloremque
+				officia blanditiis optio, perspiciatis tempora vitae officiis, facilis quas cupiditate possimus, animi! Repudiandae labore minus sequi iusto ipsam
+				consequatur nisi praesentium harum vero alias facere tenetur tempore reprehenderit perspiciatis quas voluptate porro earum dolores voluptatum
+				voluptates veniam, pariatur quis quisquam hic. Ratione quidem obcaecati amet praesentium iure laudantium nihil ad distinctio totam a dicta sint et
+				perferendis eligendi officiis iste, quis, culpa. Temporibus dolorum culpa cum, quis a ratione neque totam tempora blanditiis sint quia labore,
+				distinctio voluptate debitis in odio, quas deserunt laudantium. Itaque laborum, quis nesciunt modi nobis ducimus cum corporis, quam, rem illum
+				ipsum, eum! Commodi iure, reiciendis ex dolor impedit dolorem voluptas atque.</p>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+			</div>
 		</div>
 	</div>
 </div>

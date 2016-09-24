@@ -1,4 +1,4 @@
-package ua.controller;
+package ua.controller.adminControllers;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
@@ -21,7 +21,7 @@ import ua.DTO.FilterForms.adminFilter.StateFilterForm;
 import ua.DTO.SaveForms.StateSaveForm;
 import ua.entity.State;
 import ua.service.StateService;
-import ua.service.validators.StateValidator;
+import ua.service.validators.adminValidators.StateValidator;
 
 @Controller
 public class StateController {

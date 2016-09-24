@@ -7,6 +7,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import ua.DTO.RegistrationForm;
 import ua.DTO.FilterForms.adminFilter.UserFilterForm;
 import ua.DTO.SaveForms.UserSaveForm;
 import ua.entity.Role;
@@ -83,4 +84,17 @@ public class UserService {
 	public User findOne(int id) {
 		return userRepository.findOne(id);
 	}
+
+	public User save(RegistrationForm registerUser) {
+		User user = new User();
+		user.setLogin(registerUser.getLogin());
+		user.setEmail(registerUser.getEmail());
+		user.setFirstName(registerUser.getFirstName());
+		user.setLastName(registerUser.getLastName());
+		user.setPassword(registerUser.getPassword());
+		user.setTelephone(registerUser.getTelephone());
+		user.setRole(Role.ROLE_USER);
+		return userRepository.save(user);
+	}
+	
 }
