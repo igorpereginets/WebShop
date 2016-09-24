@@ -15,7 +15,7 @@
 		</div>
 		<form:form action="/admin/users" modelAttribute="filter" method="get" name="searchForm">
 			<custom:hiddenInputs
-				excludeParams="loginSearch, firstNameSearch, lastNameSearch, emailSearch, telephoneSearch, statusSearch, minMoney, maxMoney, minRate, maxRate, genderSearch, _genderFilter" />
+				excludeParams="loginSearch, firstNameSearch, lastNameSearch, emailSearch, telephoneSearch, minMoney, maxMoney, minRate, maxRate, genderSearch, _genderFilter" />
 			<div class="col-md-4 col-sm-12">
 				<form:input type="search" path="loginSearch" class="form-control" placeholder="Search login..." />
 			</div>
@@ -30,9 +30,6 @@
 			</div>
 			<div class="col-md-4 col-sm-12">
 				<form:input type="search" path="telephoneSearch" class="form-control" placeholder="Search Telephone..." />
-			</div>
-			<div class="col-md-4 col-sm-12">
-				<form:input type="search" path="statusSearch" class="form-control" placeholder="Search Status..." />
 			</div>
 			<div class="col-md-2 col-sm-12">
 				<form:input type="number" path="minMoney" class="form-control" placeholder="Min money" max="100000000" />
@@ -73,7 +70,6 @@
 									<th>Birthday</th>
 									<th>Money</th>
 									<th>Rate</th>
-									<th>Status</th>
 									<th>Bucket</th>
 									<th class="update">Update</th>
 									<th class="delete">Delete</th>
@@ -96,7 +92,6 @@
 										<td>${user.birthday}</td>
 										<td>${user.money}</td>
 										<td>${user.rate}</td>
-										<td>${user.status.status}</td>
 										<td><a href="/admin/${user.id}/buckets" class="glyphicon glyphicon-remove-sign"></a></td>
 										<td><a href="/admin/users/update/${user.id}?${pageContext.request.queryString}" class="fa fa-fw fa-pencil"></a></td>
 										<td><a href="/admin/users/delete/${user.id}?${pageContext.request.queryString}" class="glyphicon glyphicon-remove-sign"></a></td>
@@ -154,7 +149,6 @@
 							<li <custom:isActive key="sort" value="birthday"/>><a href="<custom:allParams change="sort" value="birthday"/>">Birthday</a></li>
 							<li <custom:isActive key="sort" value="money"/>><a href="<custom:allParams change="sort" value="money"/>">Money</a></li>
 							<li <custom:isActive key="sort" value="rate"/>><a href="<custom:allParams change="sort" value="rate"/>">Rate</a></li>
-							<li <custom:isActive key="sort" value="status.status"/>><a href="<custom:allParams change="sort" value="status.status"/>">Status</a></li>
 						</ul>
 					</div>
 					<div class="dropup pull-right size">
@@ -227,11 +221,6 @@
 									</c:otherwise>
 								</c:choose>
 							</c:forEach>
-						</form:select>
-						<form:errors path="status" />
-						<form:select path="status" required="true">
-							<form:option value="0">Choose status</form:option>
-							<form:options items="${statuses}" itemLabel="status" itemValue="id" />
 						</form:select>
 					</form:form>
 				</div>

@@ -20,13 +20,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import ua.DTO.FilterForms.adminFilter.UserFilterForm;
 import ua.DTO.SaveForms.UserSaveForm;
 import ua.entity.Address;
-import ua.entity.Status;
 import ua.entity.User;
 import ua.service.AddressService;
-import ua.service.StatusService;
 import ua.service.UserService;
 import ua.service.editors.AddressEditor;
-import ua.service.editors.StatusEditor;
 import ua.service.validators.UserValidator;
 
 @Controller
@@ -34,8 +31,6 @@ public class UserController {
 
 	@Autowired
 	private UserService userService;
-	@Autowired
-	private StatusService statusService;
 	@Autowired
 	private AddressService addressService;
 
@@ -52,7 +47,6 @@ public class UserController {
 	@InitBinder("userSaveForm")
 	public void initBinder(WebDataBinder binder) {
 		binder.registerCustomEditor(Address.class, new AddressEditor(addressService));
-		binder.registerCustomEditor(Status.class, new StatusEditor(statusService));
 		binder.setValidator(new UserValidator(userService));
 	}
 
@@ -61,7 +55,6 @@ public class UserController {
 		Page<User> page = userService.findAll(pageable, filter);
 		model.addAttribute("page", page);
 		model.addAttribute("countPages", page.getTotalPages());
-		model.addAttribute("statuses", statusService.findAll());
 		model.addAttribute("addresses", addressService.findAll());
 		return "users";
 	}
@@ -73,7 +66,6 @@ public class UserController {
 			Page<User> page = userService.findAll(pageable, filter);
 			model.addAttribute("page", page);
 			model.addAttribute("countPages", page.getTotalPages());
-			model.addAttribute("statuses", statusService.findAll());
 			model.addAttribute("addresses", addressService.findAll());
 			return "users";
 		}
@@ -86,7 +78,6 @@ public class UserController {
 		Page<User> page = userService.findAll(pageable, filter);
 		model.addAttribute("page", page);
 		model.addAttribute("countPages", page.getTotalPages());
-		model.addAttribute("statuses", statusService.findAll());
 		model.addAttribute("addresses", addressService.findAll());
 		model.addAttribute("userSaveForm", userService.findWithSaveForm(id));
 		return "users";

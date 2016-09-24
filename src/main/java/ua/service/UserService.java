@@ -36,7 +36,6 @@ public class UserService {
 		user.setMoney(userSaveForm.getMoney());
 		user.setPassword(userSaveForm.getPassword());
 		user.setRate(userSaveForm.getRate());
-		user.setStatus(userSaveForm.getStatus());
 		user.setTelephone(userSaveForm.getTelephone());
 		return userRepository.save(user);
 	}
@@ -55,7 +54,6 @@ public class UserService {
 		userSaveForm.setMoney(user.getMoney());
 		userSaveForm.setPassword(user.getPassword());
 		userSaveForm.setRate(user.getRate());
-		userSaveForm.setStatus(user.getStatus());
 		userSaveForm.setTelephone(user.getTelephone());
 		return userSaveForm;
 	}

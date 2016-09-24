@@ -35,7 +35,6 @@ public class UserValidator implements Validator {
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "birthday", "", "Birthday must not be empty");
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "money", "", "Money must not be empty");
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "rate", "", "Rate must not be empty");
-		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "status", "", "Status must not be empty");
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "address", "", "Address must not be empty");
 		
 		UserSaveForm user = (UserSaveForm) target;

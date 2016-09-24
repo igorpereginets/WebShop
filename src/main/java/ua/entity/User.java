@@ -1,24 +1,31 @@
 package ua.entity;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 import org.hibernate.annotations.Type;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 @Entity
-public class User {
+public class User implements UserDetails {
+
+	private static final long serialVersionUID = -2868742017473932812L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -43,8 +50,8 @@ public class User {
 	@Column(nullable = false, columnDefinition = "DOUBLE DEFAULT 0")
 	private double rate;
 
-	@ManyToOne
-	private Status status;
+	@Enumerated
+	private Role role;
 	@OneToOne(fetch = FetchType.LAZY)
 	private Address address;
 
@@ -71,6 +78,7 @@ public class User {
 		this.login = login;
 	}
 
+	@Override
 	public String getPassword() {
 		return password;
 	}
@@ -143,12 +151,12 @@ public class User {
 		this.rate = rate;
 	}
 
-	public Status getStatus() {
-		return status;
+	public Role getRole() {
+		return role;
 	}
 
-	public void setStatus(Status status) {
-		this.status = status;
+	public void setRole(Role role) {
+		this.role = role;
 	}
 
 	public Address getAddress() {
@@ -181,6 +189,38 @@ public class User {
 
 	public void setWishlist(List<Goods> wishlist) {
 		this.wishlist = wishlist;
+	}
+
+	@Override
+	public Collection<? extends GrantedAuthority> getAuthorities() {
+		List<GrantedAuthority> authority = new ArrayList<>();
+		authority.add(new SimpleGrantedAuthority(role.name()));
+		return authority;
+	}
+
+	@Override
+	public String getUsername() {
+		return login;
+	}
+
+	@Override
+	public boolean isAccountNonExpired() {
+		return true;
+	}
+
+	@Override
+	public boolean isAccountNonLocked() {
+		return true;
+	}
+
+	@Override
+	public boolean isCredentialsNonExpired() {
+		return true;
+	}
+
+	@Override
+	public boolean isEnabled() {
+		return true;
 	}
 
 }

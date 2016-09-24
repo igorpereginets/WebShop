@@ -1,7 +1,6 @@
 package ua.DTO.SaveForms;
 
 import ua.entity.Address;
-import ua.entity.Status;
 
 public class UserSaveForm {
 
@@ -17,7 +16,6 @@ public class UserSaveForm {
 	private double money;
 	private double rate;
 
-	private Status status;
 	private Address address;
 
 	public int getId() {
@@ -106,14 +104,6 @@ public class UserSaveForm {
 
 	public void setRate(double rate) {
 		this.rate = rate;
-	}
-
-	public Status getStatus() {
-		return status;
-	}
-
-	public void setStatus(Status status) {
-		this.status = status;
 	}
 
 	public Address getAddress() {

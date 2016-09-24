@@ -14,7 +14,6 @@
 					<li><a href="/admin/cities"><i class="fa fa-fw fa-building "></i> Cities</a></li>
 					<li><a href="/admin/address"><i class="fa fa-fw fa-map-marker "></i> Address</a></li>
 					<li><a href="/admin/users"><i class="fa fa-fw fa-users"></i> Users</a></li>
-					<li><a href="/admin/status"><i class="fa fa-fw fa-file"></i> Status</a></li>
 				</ul></li>
 			<li><a href="javascript:;" data-toggle="collapse" data-target="#goods"><i class="fa fa-fw fa-bars"></i> Goods Menu </a>
 				<ul id="goods" class="">

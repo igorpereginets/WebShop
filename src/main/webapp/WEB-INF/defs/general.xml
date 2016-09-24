@@ -47,10 +47,6 @@
 		<put-attribute name="body" value="/WEB-INF/views/brands.jsp" />
 	</definition>
 	
-	<definition name="status" extends="adminka">
-		<put-attribute name="body" value="/WEB-INF/views/status.jsp" />
-	</definition>
-	
 	<definition name="goods" extends="adminka">
 		<put-attribute name="body" value="/WEB-INF/views/goods.jsp" />
 	</definition>
