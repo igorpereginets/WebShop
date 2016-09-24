@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib uri="http://www.springframework.org/security/tags" prefix="security" %>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="security"%>
 <div class="row">
 	<div class="col-md-12">
 		<nav class="navbar navbar-default navbar-fixed-top">
@@ -17,18 +17,25 @@
 					<li><a href="#" role="button" data-toggle="modal" data-target=".contact">Contact us</a></li>
 					<li><a href="#" role="button" data-toggle="modal" data-target=".help">Help</a></li>
 				</ul>
-				<div class="pull-right">
-					<security:authorize access="hasRole('ADMIN')">
-						<a type="button" class="btn btn-info navbar-btn" href="/admin/countries">Admin</a>
-					</security:authorize>
-					<security:authorize access="isAuthenticated()">
-						<a href="/logout" type="button" class="btn btn-success navbar-btn">Log Out</a>
-					</security:authorize>
-					<security:authorize access="!isAuthenticated()">
-						<a href="/login" type="button" class="btn btn-primary navbar-btn">Log In</a>
-						<a type="button" class="btn btn-success navbar-btn">Sign Up</a>
-					</security:authorize>
-				</div>
+				<security:authorize access="isAuthenticated()">
+					<form action="/logout" class="navbar-right navbar-form" method="post">
+						<button type="submit" class="btn btn-success navbar-btn">Log Out</button>
+						<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" class="form-control" />
+					</form>
+				</security:authorize>
+				<security:authorize access="hasRole('ADMIN')">
+					<form action="/admin/countries" class="navbar-right navbar-form">
+						<button type="submit" class="btn btn-info navbar-btn">Admin</button>
+					</form>
+				</security:authorize>
+				<security:authorize access="!isAuthenticated()">
+					<form action="/login" class="navbar-right navbar-form">
+						<button type="submit" class="btn btn-success navbar-btn">Sign Up</button>
+					</form>
+					<form action="/login" class="navbar-right navbar-form">
+						<button type="submit" class="btn btn-primary navbar-btn">Log In</button>
+					</form>
+				</security:authorize>
 			</div>
 		</nav>
 	</div>

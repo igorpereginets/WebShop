@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import ua.DTO.FilterForms.adminFilter.UserFilterForm;
 import ua.DTO.SaveForms.UserSaveForm;
+import ua.entity.Role;
 import ua.entity.User;
 import ua.repository.UserRepository;
 import ua.service.specification.adminFilterAdapter.UserFilterAdapter;
@@ -37,6 +38,7 @@ public class UserService {
 		user.setPassword(userSaveForm.getPassword());
 		user.setRate(userSaveForm.getRate());
 		user.setTelephone(userSaveForm.getTelephone());
+		user.setRole(Role.ROLE_USER);
 		return userRepository.save(user);
 	}
 	
