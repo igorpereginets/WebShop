@@ -92,15 +92,17 @@ public class GoodsFilterAdapter implements Specification<Goods> {
 	}
 
 	private void findByActive() {
-		boolean active = form.isActiveSearch();
-		if (active)
-			filters.add((root, query, cb) -> {
-				return cb.isTrue(root.get("active"));
-			});
-		else
-			filters.add((root, query, cb) -> {
-				return cb.isFalse(root.get("active"));
-			});
+		Boolean active = form.getActiveSearch();
+		if (active != null) {
+			if (active)
+				filters.add((root, query, cb) -> {
+					return cb.isTrue(root.get("active"));
+				});
+			else
+				filters.add((root, query, cb) -> {
+					return cb.isFalse(root.get("active"));
+				});
+		}
 	}
 
 	private void findByEnd() {

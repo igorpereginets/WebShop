@@ -56,7 +56,7 @@
 			<div class="panel-body">
 				<ul class="list-group">
 					<c:forEach items="${categories}" var="category">
-						<li class="list-group-item"><a href="?categorySearch=${category.name}" class="category"> ${category.name} <span class="badge">${category.count}</span>
+						<li class="list-group-item"><a href="?categorySearch=${category.id}" class="category"> ${category.name} <span class="badge">${category.count}</span>
 						</a></li>
 					</c:forEach>
 				</ul>
@@ -69,7 +69,7 @@
 			<div class="panel-body">
 				<ul class="list-group">
 					<c:forEach items="${brands}" var="brand">
-						<li class="list-group-item"><a href="?brandSearch=${brand.name}" class="brands"> ${brand.name} </a></li>
+						<li class="list-group-item"><a href="?brandSearch=${brand.id}" class="brands"> ${brand.name} </a></li>
 					</c:forEach>
 				</ul>
 			</div>
@@ -99,10 +99,28 @@
 						<form:input type="number" path="maxAmount" class="form-control" placeholder="Max amount" />
 					</div>
 					<div class="col-md-4 col-sm-12">
-						<form:input type="search" path="brandSearch" class="form-control" placeholder="Search producer..." />
+						<form:select path="brandSearch" class="form-control">
+							<form:option value="">Choose Brand</form:option>
+							<form:options items="${brands}" itemLabel="name" itemValue="id" />
+						</form:select>
+<%-- 						<form:input type="search" path="brandSearch" class="form-control" placeholder="Search producer..." /> --%>
 					</div>
 					<div class="col-md-4 col-sm-12">
-						<form:input type="search" path="categorySearch" class="form-control" placeholder="Search category..." />
+						<form:select path="categorySearch" class="form-control">
+							<form:option value="">Choose category</form:option>
+							<c:forEach items="${categories}" var="category">
+								<c:choose>
+									<c:when test="${category.id eq filter.categorySearch.id}">
+										<form:option selected="selected" value="${category.id}">${category.name}</form:option>
+									</c:when>
+									<c:otherwise>
+										<form:option value="${category.id}">${category.name}</form:option>
+									</c:otherwise>
+								</c:choose>
+							</c:forEach>
+<%-- 							<form:options items="${categories}" itemLabel="name" itemValue="id"/> --%>
+						</form:select>
+<%-- 						<form:input type="search" path="categorySearch" class="form-control" placeholder="Search category..." /> --%>
 					</div>
 					<div class="col-md-4 col-sm-12">
 						<form:input type="search" path="tagSearch" class="form-control" placeholder="Search by tag..." />

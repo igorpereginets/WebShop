@@ -13,6 +13,8 @@ import org.springframework.data.jpa.domain.Specification;
 import org.springframework.data.jpa.domain.Specifications;
 
 import ua.DTO.FilterForms.IndexGoodsFilterForm;
+import ua.entity.Brand;
+import ua.entity.Category;
 import ua.entity.Goods;
 
 public class IndexGoodsFilterAdapter implements Specification<Goods> {
@@ -60,21 +62,21 @@ public class IndexGoodsFilterAdapter implements Specification<Goods> {
 //	}
 
 	private void filterByCategory() {
-		String category = form.getCategorySearch();
-		if (category != null && !category.isEmpty()) {
+		Category category = form.getCategorySearch();
+		if (category != null) {
 			filters.add((root, query, cb) -> {
-				Expression<String> categoryExp = root.get("category").<String> get("name");
-				return cb.like(cb.lower(categoryExp), category.toLowerCase() + "%");
+				Expression<Integer> categoryExp = root.get("category").<Integer> get("id");
+				return cb.equal(categoryExp, category.getId());
 			});
 		}
 	}
 
 	private void filterByBrand() {
-		String brand = form.getBrandSearch();
-		if (brand != null && !brand.isEmpty()) {
+		Brand brand = form.getBrandSearch();
+		if (brand != null) {
 			filters.add((root, query, cb) -> {
-				Expression<String> brandExp = root.get("brand").<String> get("name");
-				return cb.like(cb.lower(brandExp), brand.toLowerCase() + "%");
+				Expression<Integer> brandExp = root.get("brand").<Integer> get("id");
+				return cb.equal(brandExp, brand.getId());
 			});
 		}
 	}

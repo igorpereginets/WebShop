@@ -9,7 +9,7 @@ public class GoodsFilterForm {
 	private Integer maxAmount;
 	private String beginSearch;
 	private String endSearch;
-	private boolean activeSearch;
+	private Boolean activeSearch;
 
 	private String userSearch;
 	private String categorySearch;
@@ -72,11 +72,11 @@ public class GoodsFilterForm {
 		this.endSearch = endSearch;
 	}
 
-	public boolean isActiveSearch() {
+	public Boolean getActiveSearch() {
 		return activeSearch;
 	}
 
-	public void setActiveSearch(boolean activeSearch) {
+	public void setActiveSearch(Boolean activeSearch) {
 		this.activeSearch = activeSearch;
 	}
 

@@ -42,8 +42,6 @@ public class UserValidator implements Validator {
 			errors.rejectValue("email", "", "E-mail must be less than 40 characters");
 		if(user.getLogin().length() > 20)
 			errors.rejectValue("login", "", "Login must be less than 20 characters");
-		if(user.getPassword().length() > 20)
-			errors.rejectValue("password", "", "Password must be less than 20 characters");
 		if(user.getFirstName().length() > 20)
 			errors.rejectValue("firstName", "", "First name must be less than 20 characters");
 		if(user.getLastName().length() > 25)

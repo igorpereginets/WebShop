@@ -51,9 +51,14 @@
 			<div class="col-md-4 col-sm-12">
 				<form:input type="search" path="categorySearch" class="form-control" placeholder="Search category..." />
 			</div>
-			<form:radiobutton path="activeSearch" value="true" />	Active
-		 			<form:radiobutton path="activeSearch" value="false" /> Not active 
-		 			<button type="submit" class="hidden"></button>
+			<div class="col-md-3 col-sm-11">
+				<form:select path="activeSearch">
+					<form:option value="">Choose active setting</form:option>
+					<form:option value="false">Not active</form:option>
+					<form:option value="true">Active</form:option>
+				</form:select>
+			</div>
+			<button type="submit" class="btn btn-info">Search</button>
 		</form:form>
 		<div class="col-sm-12">
 			<div class="panel panel-default">
@@ -225,14 +230,14 @@
 						<form:select data-placeholder="Your Favorite Types of Bear" style="width: 350px;" multiple="true" path="tags" class="chzn-select" tabindex="8">
 							<form:option value=""></form:option>
 							<form:options items="${tags}" itemLabel="name" itemValue="id" />
-<!-- 							<option>American Black Bear</option> -->
-<!-- 							<option>Asiatic Black Bear</option> -->
-<!-- 							<option>Brown Bear</option> -->
-<!-- 							<option>Giant Panda</option> -->
-<!-- 							<option selected>Sloth Bear</option> -->
-<!-- 							<option disabled>Sun Bear</option> -->
-<!-- 							<option selected>Polar Bear</option> -->
-<!-- 							<option disabled>Spectacled Bear</option> -->
+							<!-- 							<option>American Black Bear</option> -->
+							<!-- 							<option>Asiatic Black Bear</option> -->
+							<!-- 							<option>Brown Bear</option> -->
+							<!-- 							<option>Giant Panda</option> -->
+							<!-- 							<option selected>Sloth Bear</option> -->
+							<!-- 							<option disabled>Sun Bear</option> -->
+							<!-- 							<option selected>Polar Bear</option> -->
+							<!-- 							<option disabled>Spectacled Bear</option> -->
 						</form:select>
 						<form:input type="file" path="file" />
 					</form:form>

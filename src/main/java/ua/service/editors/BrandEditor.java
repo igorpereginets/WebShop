@@ -15,9 +15,11 @@ public class BrandEditor extends PropertyEditorSupport {
 
 	@Override
 	public void setAsText(String text) throws IllegalArgumentException {
-		Brand brand = brandService.findOne(Integer.parseInt(text));
-		setValue(brand);
+		if (text != null && !text.isEmpty()) {
+			Brand brand = brandService.findOne(Integer.parseInt(text));
+			setValue(brand);
+		} else
+			setValue(null);
 	}
-	
-	
+
 }

@@ -5,6 +5,7 @@ import java.time.LocalDate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import ua.DTO.RegistrationForm;
@@ -20,6 +21,8 @@ public class UserService {
 
 	@Autowired
 	private UserRepository userRepository;
+	@Autowired
+	private BCryptPasswordEncoder encoder;
 
 	public Iterable<User> findAll() {
 		return userRepository.findAll();
@@ -36,7 +39,10 @@ public class UserService {
 		user.setLastName(userSaveForm.getLastName());
 		user.setLogin(userSaveForm.getLogin());
 		user.setMoney(userSaveForm.getMoney());
-		user.setPassword(userSaveForm.getPassword());
+		if(user.getId() == 0)
+			user.setPassword(encoder.encode(userSaveForm.getPassword()));
+		else
+			user.setPassword(userSaveForm.getPassword());
 		user.setRate(userSaveForm.getRate());
 		user.setTelephone(userSaveForm.getTelephone());
 		user.setRole(Role.ROLE_USER);
@@ -47,7 +53,8 @@ public class UserService {
 		User user = userRepository.findOneWithAddress(id);
 		UserSaveForm userSaveForm = new UserSaveForm();
 		userSaveForm.setAddress(user.getAddress());
-		userSaveForm.setBirthday(user.getBirthday().toString());
+		if(user.getBirthday() != null)
+			userSaveForm.setBirthday(user.getBirthday().toString());
 		userSaveForm.setEmail(user.getEmail());
 		userSaveForm.setFirstName(user.getFirstName());
 		userSaveForm.setGender(user.isGender());
@@ -91,7 +98,10 @@ public class UserService {
 		user.setEmail(registerUser.getEmail());
 		user.setFirstName(registerUser.getFirstName());
 		user.setLastName(registerUser.getLastName());
-		user.setPassword(registerUser.getPassword());
+		String encodedPass = encoder.encode(registerUser.getPassword());
+		System.out.println(encodedPass);
+		System.out.println(encodedPass.length());
+		user.setPassword(encodedPass);
 		user.setTelephone(registerUser.getTelephone());
 		user.setRole(Role.ROLE_USER);
 		return userRepository.save(user);
