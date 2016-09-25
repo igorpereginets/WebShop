@@ -10,9 +10,11 @@ import ua.service.CityService;
 
 public class CityValidator implements Validator {
 
-	private CityService cityService;
+	private final CityService cityService;
 	
 	public CityValidator(CityService cityService) {
+		if(cityService == null)
+			throw new IllegalArgumentException("cityService = null");
 		this.cityService = cityService;
 	}
 
@@ -27,7 +29,7 @@ public class CityValidator implements Validator {
 		
 		
 		CitySaveForm form = (CitySaveForm) target;
-		if(form.getName().length() > 50)
+		if(form.getName() != null && form.getName().length() > 50)
 			errors.rejectValue("name", "", "City name must be less than 50 characters");
 		
 		City cityFromDB = cityService.findByName(form.getName());

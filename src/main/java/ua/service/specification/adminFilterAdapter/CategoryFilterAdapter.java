@@ -18,7 +18,7 @@ import ua.entity.Category;
 public class CategoryFilterAdapter implements Specification<Category> {
 
 	private final CategoryFilterForm form;
-	private List<Specification<Category>> filters;
+	private final List<Specification<Category>> filters;
 
 	public CategoryFilterAdapter(CategoryFilterForm form) {
 		if (form != null)

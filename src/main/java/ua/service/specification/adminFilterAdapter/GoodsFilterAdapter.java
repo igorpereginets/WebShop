@@ -19,7 +19,7 @@ import ua.entity.Goods;
 public class GoodsFilterAdapter implements Specification<Goods> {
 
 	private final GoodsFilterForm form;
-	private List<Specification<Goods>> filters;
+	private final List<Specification<Goods>> filters;
 
 	public GoodsFilterAdapter(GoodsFilterForm form) {
 		if (form != null)

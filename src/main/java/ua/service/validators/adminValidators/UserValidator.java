@@ -13,9 +13,11 @@ import ua.service.UserService;
 
 public class UserValidator implements Validator {
 
-	private UserService userService;
-	
+	private final UserService userService;
+
 	public UserValidator(UserService userService) {
+		if (userService == null)
+			throw new IllegalArgumentException("userService = null");
 		this.userService = userService;
 	}
 
@@ -36,35 +38,39 @@ public class UserValidator implements Validator {
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "money", "", "Money must not be empty");
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "rate", "", "Rate must not be empty");
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "address", "", "Address must not be empty");
-		
+
 		UserSaveForm user = (UserSaveForm) target;
-		if(user.getEmail().length() > 40)
+		if (user.getEmail() != null && user.getEmail().length() > 40)
 			errors.rejectValue("email", "", "E-mail must be less than 40 characters");
-		if(user.getLogin().length() > 20)
+		if (user.getLogin() != null && user.getLogin().length() > 20)
 			errors.rejectValue("login", "", "Login must be less than 20 characters");
-		if(user.getFirstName().length() > 20)
+		if (user.getFirstName() != null && user.getFirstName().length() > 20)
 			errors.rejectValue("firstName", "", "First name must be less than 20 characters");
-		if(user.getLastName().length() > 25)
+		if (user.getLastName() != null && user.getLastName().length() > 25)
 			errors.rejectValue("lastName", "", "Last name must be less than 25 characters");
-		if(user.getTelephone().length() > 15)
+		if (user.getTelephone() != null && user.getTelephone().length() > 15)
 			errors.rejectValue("telephone", "", "Telephone must be less than 15 characters");
-		if(user.getBirthday().length() > 10)
-			errors.rejectValue("birthday", "", "Birthday must be less than 10 characters");
-		if(user.getMoney() > 1_000_000.0)
+		
+		if (user.getBirthday() != null) {
+			if (user.getBirthday().length() > 10)
+				errors.rejectValue("birthday", "", "Birthday must be less than 10 characters");
+
+			Pattern pattern = Pattern.compile("^[0-9]{4,4}-[0-9]{2,2}-[0-9]{2,2}$");
+			Matcher matcher = pattern.matcher(user.getBirthday());
+			if (!matcher.matches())
+				errors.rejectValue("birthday", "", "Bithday format: YYYY-MM-DD");
+		}
+		
+		if (user.getMoney() > 1_000_000.0)
 			errors.rejectValue("money", "", "Money must be less than 1 000 000");
-		if(user.getRate() > 10.0)
+		if (user.getRate() > 10.0)
 			errors.rejectValue("rate", "", "Rate must be less than 10");
-		
-		Pattern pattern = Pattern.compile("^[0-9]{4,4}-[0-9]{2,2}-[0-9]{2,2}$");
-		Matcher matcher = pattern.matcher(user.getBirthday());
-		if(!matcher.matches())
-			errors.rejectValue("birthday", "", "Bithday format: YYYY-MM-DD");
-		
+
 		User userFromDB = userService.findByLogin(user.getLogin());
-		if(userFromDB != null && userFromDB.getId() != user.getId())
+		if (userFromDB != null && userFromDB.getId() != user.getId())
 			errors.rejectValue("login", "", "User with such login already exists");
 		userFromDB = userService.findByEmail(user.getEmail());
-		if(userFromDB != null && userFromDB.getId() != user.getId())
+		if (userFromDB != null && userFromDB.getId() != user.getId())
 			errors.rejectValue("email", "", "User with such e-mail already exists");
 	}
 

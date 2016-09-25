@@ -1,4 +1,4 @@
-package ua.service.specification.adminFilterAdapter;
+package ua.service.validators;
 
 import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
@@ -14,6 +14,8 @@ public class BrandValidator implements Validator {
 	private final BrandService brandService;
 	
 	public BrandValidator(BrandService brandService) {
+		if(brandService == null)
+			throw new IllegalArgumentException("brandService = null");
 		this.brandService = brandService;
 	}
 
@@ -27,7 +29,7 @@ public class BrandValidator implements Validator {
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "name", "", "Name must not be empty");
 		
 		BrandSaveForm brand = (BrandSaveForm) target;
-		if(brand.getName().length() > 15)
+		if(brand.getName() != null && brand.getName().length() > 15)
 			errors.rejectValue("name", "", "Name must be less than 15 characters");
 		
 		Brand brandFromDB = brandService.findByName(brand.getName());

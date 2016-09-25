@@ -13,27 +13,32 @@ import ua.service.specification.adminFilterAdapter.CountryFilterAdapter;
 
 @Service
 public class CountryService {
-	
+
 	@Autowired
 	private CountryRepository countryRepository;
-	
+
 	public Iterable<Country> findAll() {
 		return countryRepository.findAll();
 	}
-	
+
 	public void delete(int id) {
 		countryRepository.delete(id);
 	}
-	
+
 	public Country findByName(String name) {
+		if (name == null)
+			return null;
 		return countryRepository.findByName(name);
 	}
-	
+
 	public Page<Country> findAll(Pageable pageable, CountryFilterForm filter) {
 		return countryRepository.findAll(new CountryFilterAdapter(filter), pageable);
 	}
 
 	public Country save(CountrySaveForm countrySaveForm) {
+		if (countrySaveForm == null)
+			return null;
+
 		Country country = new Country();
 		country.setId(countrySaveForm.getId());
 		country.setName(countrySaveForm.getName());
@@ -42,6 +47,9 @@ public class CountryService {
 
 	public CountrySaveForm findWithSaveForm(int id) {
 		Country country = countryRepository.findOne(id);
+		if (country == null)
+			return null;
+
 		CountrySaveForm countrySaveForm = new CountrySaveForm();
 		countrySaveForm.setId(country.getId());
 		countrySaveForm.setName(country.getName());

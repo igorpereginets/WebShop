@@ -10,9 +10,11 @@ import ua.service.CategoryService;
 
 public class CategoryValidator implements Validator {
 
-	private CategoryService categoryService;
+	private final CategoryService categoryService;
 	
 	public CategoryValidator(CategoryService categoryService) {
+		if(categoryService == null)
+			throw new IllegalArgumentException("categoryService = null");
 		this.categoryService = categoryService;
 	}
 
@@ -26,7 +28,7 @@ public class CategoryValidator implements Validator {
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "name", "", "Name must not be empty");
 		
 		CategorySaveForm category = (CategorySaveForm) target;
-		if(category.getName().length() > 25)
+		if(category.getName() != null && category.getName().length() > 25)
 			errors.rejectValue("name", "", "Name must be less than 25 characters");
 		
 		Category categoryFromDB = categoryService.findByName(category.getName());

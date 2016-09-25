@@ -20,7 +20,7 @@ import ua.entity.Goods;
 public class IndexGoodsFilterAdapter implements Specification<Goods> {
 
 	private final IndexGoodsFilterForm form;
-	private List<Specification<Goods>> filters;
+	private final List<Specification<Goods>> filters;
 	
 	public IndexGoodsFilterAdapter(IndexGoodsFilterForm form) {
 		if(form != null)
@@ -84,17 +84,17 @@ public class IndexGoodsFilterAdapter implements Specification<Goods> {
 	private void filterByAmount() {
 		Integer maxAmount = form.getMaxAmount();
 		Integer minAmount = form.getMinAmount();
-		if (maxAmount != null && minAmount != null) {
+		if (maxAmount != null && minAmount != null && maxAmount > 0 && minAmount > 0) {
 			filters.add((root, query, cb) -> {
 				Expression<Integer> amountExp = root.<Integer> get("amount");
 				return cb.between(amountExp, minAmount, maxAmount);
 			});
-		} else if (minAmount != null) {
+		} else if (minAmount != null && minAmount > 0) {
 			filters.add((root, query, cb) -> {
 				Expression<Integer> amountExp = root.<Integer> get("amount");
 				return cb.greaterThanOrEqualTo(amountExp, minAmount);
 			});
-		} else if (maxAmount != null) {
+		} else if (maxAmount != null && maxAmount > 0) {
 			filters.add((root, query, cb) -> {
 				Expression<Integer> amountExp = root.<Integer> get("amount");
 				return cb.lessThanOrEqualTo(amountExp, maxAmount);

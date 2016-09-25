@@ -22,14 +22,18 @@ public class TagService {
 	}
 
 	public Tag save(TagSaveForm tagSaveForm) {
+		if (tagSaveForm == null)
+			return null;
 		Tag tag = new Tag();
 		tag.setId(tagSaveForm.getId());
 		tag.setName(tagSaveForm.getName());
 		return tagRepository.save(tag);
 	}
-	
+
 	public TagSaveForm findWithSaveForm(int id) {
 		Tag tag = tagRepository.findOne(id);
+		if (tag == null)
+			return null;
 		TagSaveForm tagSaveForm = new TagSaveForm();
 		tagSaveForm.setId(tag.getId());
 		tagSaveForm.setName(tag.getName());
@@ -49,6 +53,8 @@ public class TagService {
 	}
 
 	public Tag findByName(String name) {
+		if (name == null || name.isEmpty())
+			return null;
 		return tagRepository.findByName(name);
 	}
 

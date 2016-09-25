@@ -21,7 +21,7 @@ import ua.DTO.FilterForms.adminFilter.BrandFilterForm;
 import ua.DTO.SaveForms.BrandSaveForm;
 import ua.entity.Brand;
 import ua.service.BrandService;
-import ua.service.specification.adminFilterAdapter.BrandValidator;
+import ua.service.validators.BrandValidator;
 
 @Controller
 public class BrandController {

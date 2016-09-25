@@ -18,7 +18,7 @@ import ua.entity.User;
 public class UserFilterAdapter implements Specification<User> {
 
 	private final UserFilterForm form;
-	private List<Specification<User>> filters;
+	private final List<Specification<User>> filters;
 
 	public UserFilterAdapter(UserFilterForm form) {
 		if (form != null)

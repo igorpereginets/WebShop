@@ -19,7 +19,12 @@ public class FileWriterImpl implements FileWriter {
 
 	@Override
 	public String save(Folder folder, MultipartFile file, int id) {
-		if (!file.isEmpty()) {
+		if(folder == null)
+			throw new IllegalArgumentException("Folder = null");
+		if(id <= 0)
+			throw new IllegalArgumentException("id must be > 0");
+		
+		if (!file.isEmpty() && file != null) {
 			String fileName = getFileName(id, getExtension(file));
 			String rootPath = getRootPath(folder, id);
 
@@ -72,6 +77,8 @@ public class FileWriterImpl implements FileWriter {
 	private String getExtension(MultipartFile file) {
 		String fileName = file.getOriginalFilename();
 		int extensionIndex = fileName.lastIndexOf(".");
+		if(extensionIndex == -1)
+			return ".jpg";
 		return fileName.substring(extensionIndex);
 	}
 

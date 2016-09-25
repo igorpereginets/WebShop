@@ -10,9 +10,11 @@ import ua.service.TagService;
 
 public class TagValidator implements Validator {
 
-	private TagService tagService;
-	
+	private final TagService tagService;
+
 	public TagValidator(TagService tagService) {
+		if (tagService == null)
+			throw new IllegalArgumentException("tagService = null");
 		this.tagService = tagService;
 	}
 
@@ -24,13 +26,13 @@ public class TagValidator implements Validator {
 	@Override
 	public void validate(Object target, Errors errors) {
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "name", "", "Name must not be empty");
-		
+
 		TagSaveForm tag = (TagSaveForm) target;
-		if(tag.getName().length() > 15)
+		if (tag.getName() != null && tag.getName().length() > 15)
 			errors.rejectValue("name", "", "Name must be less than 15 characters");
-		
+
 		Tag tagFromDB = tagService.findByName(tag.getName());
-		if(tagFromDB != null && tagFromDB.getId() != tag.getId())
+		if (tagFromDB != null && tagFromDB.getId() != tag.getId())
 			errors.rejectValue("name", "", "Such tag already exists");
 	}
 

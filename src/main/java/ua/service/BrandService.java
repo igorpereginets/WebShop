@@ -22,14 +22,20 @@ public class BrandService {
 	}
 
 	public Brand save(BrandSaveForm brandSaveForm) {
+		if (brandSaveForm == null)
+			return null;
+
 		Brand brand = new Brand();
 		brand.setId(brandSaveForm.getId());
 		brand.setName(brandSaveForm.getName());
 		return brandRepository.save(brand);
 	}
-	
+
 	public BrandSaveForm findWithSaveForm(int id) {
 		Brand brand = brandRepository.findOne(id);
+		if (brand == null)
+			return null;
+
 		BrandSaveForm brandSaveForm = new BrandSaveForm();
 		brandSaveForm.setId(brand.getId());
 		brandSaveForm.setName(brand.getName());
@@ -49,6 +55,8 @@ public class BrandService {
 	}
 
 	public Brand findByName(String name) {
+		if (name == null || name.isEmpty())
+			return null;
 		return brandRepository.findByName(name);
 	}
 

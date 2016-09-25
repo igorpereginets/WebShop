@@ -18,7 +18,7 @@ import ua.entity.City;
 public class CityFilterAdapter implements Specification<City> {
 
 	private final CityFilterForm form;
-	private List<Specification<City>> filters;
+	private final List<Specification<City>> filters;
 
 	public CityFilterAdapter(CityFilterForm form) {
 		if (form != null)

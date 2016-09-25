@@ -33,6 +33,9 @@ public class GoodsService {
 	}
 
 	public Goods save(GoodsSaveForm goodsSaveForm) {
+		if(goodsSaveForm == null)
+			return null;
+		
 		Goods good = new Goods();
 		good.setId(goodsSaveForm.getId());
 		good.setAmount(goodsSaveForm.getAmount());
@@ -68,6 +71,9 @@ public class GoodsService {
 
 	public GoodsSaveForm findWithSaveForm(int id) {
 		Goods good = goodsRepository.findOneWithTags(id);
+		if(good == null)
+			return null;
+		
 		GoodsSaveForm goodsSaveForm = new GoodsSaveForm();
 		goodsSaveForm.setId(good.getId());
 		goodsSaveForm.setAmount(good.getAmount());

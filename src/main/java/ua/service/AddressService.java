@@ -22,6 +22,9 @@ public class AddressService {
 	}
 
 	public Address save(AddressSaveForm addressSaveForm) {
+		if (addressSaveForm == null)
+			return null;
+
 		Address address = new Address();
 		address.setId(addressSaveForm.getId());
 		address.setStreet(addressSaveForm.getStreet());
@@ -29,9 +32,12 @@ public class AddressService {
 		address.setCity(addressSaveForm.getCity());
 		return addressRepository.save(address);
 	}
-	
+
 	public AddressSaveForm findWithSaveForm(int id) {
 		Address address = addressRepository.findOne(id);
+		if (address == null)
+			return null;
+
 		AddressSaveForm addressSaveForm = new AddressSaveForm();
 		addressSaveForm.setId(address.getId());
 		addressSaveForm.setStreet(address.getStreet());
@@ -49,11 +55,13 @@ public class AddressService {
 	}
 
 	public Address findByStreet(String street) {
+		if (street == null)
+			return null;
 		return addressRepository.findByStreet(street);
 	}
 
 	public Address findOne(int id) {
 		return addressRepository.findOne(id);
 	}
-	
+
 }

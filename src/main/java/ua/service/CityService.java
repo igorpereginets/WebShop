@@ -16,21 +16,27 @@ public class CityService {
 
 	@Autowired
 	private CityRepository cityRepository;
-	
+
 	public Iterable<City> findAll() {
 		return cityRepository.findAll();
 	}
 
 	public City save(CitySaveForm citySaveForm) {
+		if (citySaveForm == null)
+			return null;
+
 		City city = new City();
 		city.setId(citySaveForm.getId());
 		city.setName(citySaveForm.getName());
 		city.setCountry(citySaveForm.getCountry());
 		return cityRepository.save(city);
 	}
-	
+
 	public CitySaveForm findWithSaveForm(int id) {
 		City city = cityRepository.findOneWithCountry(id);
+		if (city == null)
+			return null;
+
 		CitySaveForm citySaveForm = new CitySaveForm();
 		citySaveForm.setId(city.getId());
 		citySaveForm.setName(city.getName());
@@ -51,6 +57,8 @@ public class CityService {
 	}
 
 	public City findByName(String name) {
+		if (name == null)
+			return null;
 		return cityRepository.findByName(name);
 	}
 

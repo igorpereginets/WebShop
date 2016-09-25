@@ -29,9 +29,12 @@ public class UserService {
 	}
 
 	public User save(UserSaveForm userSaveForm) {
+		if (userSaveForm == null)
+			return null;
 		User user = new User();
 		user.setAddress(userSaveForm.getAddress());
-		user.setBirthday(LocalDate.parse(userSaveForm.getBirthday()));
+		if (userSaveForm.getBirthday() != null)
+			user.setBirthday(LocalDate.parse(userSaveForm.getBirthday()));
 		user.setEmail(userSaveForm.getEmail());
 		user.setFirstName(userSaveForm.getFirstName());
 		user.setGender(userSaveForm.isGender());
@@ -39,7 +42,7 @@ public class UserService {
 		user.setLastName(userSaveForm.getLastName());
 		user.setLogin(userSaveForm.getLogin());
 		user.setMoney(userSaveForm.getMoney());
-		if(user.getId() == 0)
+		if (user.getId() == 0 && userSaveForm.getPassword() != null)
 			user.setPassword(encoder.encode(userSaveForm.getPassword()));
 		else
 			user.setPassword(userSaveForm.getPassword());
@@ -48,12 +51,15 @@ public class UserService {
 		user.setRole(Role.ROLE_USER);
 		return userRepository.save(user);
 	}
-	
+
 	public UserSaveForm findWithSaveForm(int id) {
 		User user = userRepository.findOneWithAddress(id);
+		if (user == null)
+			return null;
+
 		UserSaveForm userSaveForm = new UserSaveForm();
 		userSaveForm.setAddress(user.getAddress());
-		if(user.getBirthday() != null)
+		if (user.getBirthday() != null)
 			userSaveForm.setBirthday(user.getBirthday().toString());
 		userSaveForm.setEmail(user.getEmail());
 		userSaveForm.setFirstName(user.getFirstName());
@@ -81,10 +87,14 @@ public class UserService {
 	}
 
 	public User findByLogin(String login) {
+		if (login == null || login.isEmpty())
+			return null;
 		return userRepository.findByLogin(login);
 	}
 
 	public User findByEmail(String email) {
+		if (email == null || email.isEmpty())
+			return null;
 		return userRepository.findByEmail(email);
 	}
 
@@ -93,18 +103,20 @@ public class UserService {
 	}
 
 	public User save(RegistrationForm registerUser) {
+		if (registerUser == null)
+			return null;
 		User user = new User();
 		user.setLogin(registerUser.getLogin());
 		user.setEmail(registerUser.getEmail());
 		user.setFirstName(registerUser.getFirstName());
 		user.setLastName(registerUser.getLastName());
-		String encodedPass = encoder.encode(registerUser.getPassword());
-		System.out.println(encodedPass);
-		System.out.println(encodedPass.length());
-		user.setPassword(encodedPass);
+		if (registerUser.getPassword() != null) {
+			String encodedPass = encoder.encode(registerUser.getPassword());
+			user.setPassword(encodedPass);
+		}
 		user.setTelephone(registerUser.getTelephone());
 		user.setRole(Role.ROLE_USER);
 		return userRepository.save(user);
 	}
-	
+
 }

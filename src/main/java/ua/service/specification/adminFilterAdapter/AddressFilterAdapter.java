@@ -18,7 +18,7 @@ import ua.entity.Address;
 public class AddressFilterAdapter implements Specification<Address> {
 
 	private final AddressFilterForm addressFilterForm;
-	private List<Specification<Address>> filters;
+	private final List<Specification<Address>> filters;
 
 	public AddressFilterAdapter(AddressFilterForm addressFilterForm) {
 		if (addressFilterForm != null)

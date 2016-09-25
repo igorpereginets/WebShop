@@ -10,9 +10,11 @@ import ua.service.StateService;
 
 public class StateValidator implements Validator {
 
-	private StateService stateService;
-	
+	private final StateService stateService;
+
 	public StateValidator(StateService stateService) {
+		if (stateService == null)
+			throw new IllegalArgumentException("stateService = null");
 		this.stateService = stateService;
 	}
 
@@ -24,13 +26,13 @@ public class StateValidator implements Validator {
 	@Override
 	public void validate(Object target, Errors errors) {
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "name", "", "State must not be empty");
-		
+
 		StateSaveForm form = (StateSaveForm) target;
-		if(form.getName().length() > 25) 
+		if (form.getName() != null && form.getName().length() > 25)
 			errors.rejectValue("name", "", "State must be less than 25 characters");
-		
+
 		State stateFromDB = stateService.findByName(form.getName());
-		if(stateFromDB != null && stateFromDB.getId() != form.getId()) 
+		if (stateFromDB != null && stateFromDB.getId() != form.getId())
 			errors.rejectValue("name", "", "Such state already exists");
 	}
 

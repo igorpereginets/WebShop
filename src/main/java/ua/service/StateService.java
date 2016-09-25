@@ -22,14 +22,18 @@ public class StateService {
 	}
 
 	public State save(StateSaveForm stateSaveForm) {
+		if (stateSaveForm == null)
+			return null;
 		State state = new State();
 		state.setId(stateSaveForm.getId());
 		state.setName(stateSaveForm.getName());
 		return stateRepository.save(state);
 	}
-	
+
 	public StateSaveForm findWithSaveForm(int id) {
 		State state = stateRepository.findOne(id);
+		if (state == null)
+			return null;
 		StateSaveForm stateSaveForm = new StateSaveForm();
 		stateSaveForm.setId(state.getId());
 		stateSaveForm.setName(state.getName());
@@ -49,6 +53,8 @@ public class StateService {
 	}
 
 	public State findByName(String name) {
+		if (name == null || name.isEmpty())
+			return null;
 		return stateRepository.findByName(name);
 	}
 

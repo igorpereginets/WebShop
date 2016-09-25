@@ -17,7 +17,7 @@ import javax.servlet.jsp.tagext.SimpleTagSupport;
 public class HiddenInputs extends SimpleTagSupport {
 	
 	private final StringWriter writer = new StringWriter();
-	private List<String> excludeParam = new ArrayList<>();
+	private final List<String> excludeParam = new ArrayList<>();
 	
 	@Override
 	public void doTag() throws JspException, IOException {

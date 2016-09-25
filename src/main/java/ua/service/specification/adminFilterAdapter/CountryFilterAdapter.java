@@ -12,16 +12,19 @@ import ua.entity.Country;
 
 public class CountryFilterAdapter implements Specification<Country> {
 
-	private CountryFilterForm form;
+	private final CountryFilterForm form;
 
 	public CountryFilterAdapter(CountryFilterForm form) {
-		this.form = form;
+		if (form != null)
+			this.form = form;
+		else
+			this.form = new CountryFilterForm();
 	}
 
 	@Override
 	public Predicate toPredicate(Root<Country> root, CriteriaQuery<?> query, CriteriaBuilder cb) {
 		String name = form.getName();
-		if(name != null && !name.isEmpty())
+		if (name != null && !name.isEmpty())
 			return cb.like(cb.lower(root.get("name")), name.toLowerCase() + "%");
 		return null;
 	}

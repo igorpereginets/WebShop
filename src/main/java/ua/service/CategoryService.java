@@ -25,15 +25,21 @@ public class CategoryService {
 	}
 
 	public Category save(CategorySaveForm categorySaveForm) {
+		if (categorySaveForm == null)
+			return null;
+
 		Category category = new Category();
 		category.setId(categorySaveForm.getId());
 		category.setName(categorySaveForm.getName());
 		category.setParent(categorySaveForm.getParent());
 		return categoryRepository.save(category);
 	}
-	
+
 	public CategorySaveForm findWithSaveForm(int id) {
 		Category category = categoryRepository.findOne(id);
+		if (category == null)
+			return null;
+
 		CategorySaveForm categorySaveForm = new CategorySaveForm();
 		categorySaveForm.setId(category.getId());
 		categorySaveForm.setName(category.getName());
@@ -58,9 +64,11 @@ public class CategoryService {
 	}
 
 	public Category findByName(String name) {
+		if (name == null || name.isEmpty())
+			return null;
 		return categoryRepository.findByName(name);
 	}
-	
+
 	public List<CategoryAndCount> findAllWithGoodsCount() {
 		return categoryRepository.findAllWithGoodsCount();
 	}
