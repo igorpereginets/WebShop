@@ -13,6 +13,9 @@
 			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav">
 					<li class="active"><a href="/"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>Home</a></li>
+					<security:authorize access="isAuthenticated()">
+						<li><a href="/createGoods"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>Add Goods</a></li>
+					</security:authorize>
 					<li><a href="#" role="button" data-toggle="modal" data-target=".about">About</a></li>
 					<li><a href="#" role="button" data-toggle="modal" data-target=".contact">Contact us</a></li>
 					<li><a href="#" role="button" data-toggle="modal" data-target=".help">Help</a></li>

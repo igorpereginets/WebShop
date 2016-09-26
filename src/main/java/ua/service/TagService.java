@@ -61,4 +61,10 @@ public class TagService {
 	public Tag findOne(int id) {
 		return tagRepository.findOne(id);
 	}
+
+	public Tag save(Tag tag) {
+		if (tag != null)
+			return tagRepository.save(tag);
+		return null;
+	}
 }

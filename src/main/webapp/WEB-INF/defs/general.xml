@@ -70,5 +70,9 @@
 	<definition name="registration" extends="common">
 		<put-attribute name="body" value="/WEB-INF/views/registration.jsp" />
 	</definition>
+	
+	<definition name="createGoods" extends="common">
+		<put-attribute name="body" value="/WEB-INF/views/createGoods.jsp" />
+	</definition>
 
 </tiles-definitions>

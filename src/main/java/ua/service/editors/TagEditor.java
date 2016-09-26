@@ -19,11 +19,21 @@ public class TagEditor extends PropertyEditorSupport {
 
 	@Override
 	public void setAsText(String text) throws IllegalArgumentException {
-		if (text != null && NumberUtils.isDigits(text)) {
-			Tag tag = tagService.findOne(Integer.parseInt(text));
-			setValue(tag);
-		} else
+		if (text == null || text.isEmpty()) {
 			setValue(null);
+			return;
+		}
+		Tag tag = null;
+		
+		if (NumberUtils.isDigits(text)) {
+			tag = tagService.findOne(Integer.parseInt(text));
+		} else {
+			tag = tagService.findByName(text);
+			if(tag == null)
+				tag = tagService.save(new Tag(text));
+		}
+			
+		setValue(tag);
 	}
 
 }

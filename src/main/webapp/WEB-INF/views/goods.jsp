@@ -227,17 +227,9 @@
 							<form:option value="0">Choose category</form:option>
 							<form:options items="${categories}" itemLabel="name" itemValue="id" />
 						</form:select>
-						<form:select data-placeholder="Your Favorite Types of Bear" style="width: 350px;" multiple="true" path="tags" class="chzn-select" tabindex="8">
+						<form:select data-placeholder="Tags" style="width: 350px;" multiple="true" path="tags" class="chzn-select">
 							<form:option value=""></form:option>
 							<form:options items="${tags}" itemLabel="name" itemValue="id" />
-							<!-- 							<option>American Black Bear</option> -->
-							<!-- 							<option>Asiatic Black Bear</option> -->
-							<!-- 							<option>Brown Bear</option> -->
-							<!-- 							<option>Giant Panda</option> -->
-							<!-- 							<option selected>Sloth Bear</option> -->
-							<!-- 							<option disabled>Sun Bear</option> -->
-							<!-- 							<option selected>Polar Bear</option> -->
-							<!-- 							<option disabled>Spectacled Bear</option> -->
 						</form:select>
 						<form:input type="file" path="file" />
 					</form:form>

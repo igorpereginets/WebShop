@@ -68,4 +68,5 @@ public class IndexController {
 		model.addAttribute("tags", tagService.findAll());
 		return "showGoods";
 	}
+
 }

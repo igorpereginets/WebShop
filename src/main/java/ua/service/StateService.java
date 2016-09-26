@@ -61,4 +61,10 @@ public class StateService {
 	public State findOne(int id) {
 		return stateRepository.findOne(id);
 	}
+
+	public State save(State state) {
+		if(state != null)
+			return stateRepository.save(state);
+		return null;
+	}
 }

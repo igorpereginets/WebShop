@@ -13,38 +13,46 @@ import javax.persistence.ManyToMany;
 @Entity
 public class Tag {
 
-  @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private int id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int id;
 
-  @Column(unique = true, nullable = false, length = 15)
-  private String name;
-  @ManyToMany(mappedBy = "tags", fetch = FetchType.LAZY)
-  private List<Goods> goods;
+	@Column(unique = true, nullable = false, length = 15)
+	private String name;
+	@ManyToMany(mappedBy = "tags", fetch = FetchType.LAZY)
+	private List<Goods> goods;
 
-  public int getId() {
-    return id;
-  }
+	public Tag(String name) {
+		if (name != null)
+			this.name = name;
+	}
 
-  public void setId(int id) {
-    this.id = id;
-  }
+	public Tag() {
+	}
 
-  public String getName() {
-    return name;
-  }
+	public int getId() {
+		return id;
+	}
 
-  public void setName(String name) {
-    this.name = name;
-  }
+	public void setId(int id) {
+		this.id = id;
+	}
 
-  public List<Goods> getGoods() {
-    return goods;
-  }
+	public String getName() {
+		return name;
+	}
 
-  public void setGoods(List<Goods> goods) {
-    this.goods = goods;
-  }
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public List<Goods> getGoods() {
+		return goods;
+	}
+
+	public void setGoods(List<Goods> goods) {
+		this.goods = goods;
+	}
 
 	@Override
 	public int hashCode() {

@@ -18,26 +18,34 @@ public class Brand {
 	private int id;
 	@Column(unique = true, nullable = false, length = 15)
 	private String name;
-	
+
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "brand")
 	private List<Goods> goods;
-	
+
+	public Brand(String name) {
+		if (name != null)
+			this.name = name;
+	}
+
+	public Brand() {
+	}
+
 	public String getName() {
 		return this.name;
 	}
-	
+
 	public void setName(String name) {
 		this.name = name;
 	}
-	
+
 	public int getId() {
 		return this.id;
 	}
-	
+
 	public void setId(int id) {
 		this.id = id;
 	}
-	
+
 	public List<Goods> getGoods() {
 		return this.goods;
 	}
@@ -45,7 +53,7 @@ public class Brand {
 	public void setGoods(List<Goods> goods) {
 		this.goods = goods;
 	}
-	
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -53,7 +61,7 @@ public class Brand {
 		result = prime * result + id;
 		return result;
 	}
-	
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)

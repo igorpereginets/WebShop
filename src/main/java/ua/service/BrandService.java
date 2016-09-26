@@ -63,4 +63,10 @@ public class BrandService {
 	public Brand findOne(int id) {
 		return brandRepository.findOne(id);
 	}
+
+	public Brand save(Brand brand) {
+		if(brand != null)
+			return brandRepository.save(brand);
+		return null;
+	}
 }

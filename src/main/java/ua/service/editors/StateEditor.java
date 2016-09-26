@@ -19,11 +19,21 @@ public class StateEditor extends PropertyEditorSupport {
 
 	@Override
 	public void setAsText(String text) throws IllegalArgumentException {
-		if (text != null && NumberUtils.isDigits(text)) {
-			State state = stateService.findOne(Integer.parseInt(text));
-			setValue(state);
-		} else
+		if (text == null || text.isEmpty()) {
 			setValue(null);
+			return;
+		}
+		State state = null;
+
+		if (NumberUtils.isDigits(text))
+			state = stateService.findOne(Integer.parseInt(text));
+		else {
+			state = stateService.findByName(text);
+			if (state == null)
+				state = stateService.save(new State(text));
+		}
+
+		setValue(state);
 	};
 
 }

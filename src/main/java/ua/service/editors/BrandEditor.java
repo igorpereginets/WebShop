@@ -19,11 +19,20 @@ public class BrandEditor extends PropertyEditorSupport {
 
 	@Override
 	public void setAsText(String text) throws IllegalArgumentException {
-		if (text != null && NumberUtils.isDigits(text)) {
-			Brand brand = brandService.findOne(Integer.parseInt(text));
-			setValue(brand);
-		} else
+		if (text == null || text.isEmpty()){
 			setValue(null);
+			return;
+		}
+		Brand brand = null;
+		if (NumberUtils.isDigits(text)) {
+			brand = brandService.findOne(Integer.parseInt(text));
+		} else {
+			brand = brandService.findByName(text);
+			if(brand == null)
+				brand = brandService.save(new Brand(text));
+		}
+		
+		setValue(brand);
 	}
 
 }

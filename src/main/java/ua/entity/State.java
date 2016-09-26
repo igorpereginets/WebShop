@@ -13,38 +13,46 @@ import javax.persistence.OneToMany;
 @Entity
 public class State {
 
-  @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private int id;
-  @Column(nullable = false, unique = true, length = 25)
-  private String name;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int id;
+	@Column(nullable = false, unique = true, length = 25)
+	private String name;
 
-  @OneToMany(mappedBy = "state", fetch = FetchType.LAZY)
-  private List<Goods> goods;
+	@OneToMany(mappedBy = "state", fetch = FetchType.LAZY)
+	private List<Goods> goods;
 
-  public int getId() {
-    return id;
-  }
+	public State(String name) {
+		if (name != null)
+			this.name = name;
+	}
 
-  public void setId(int id) {
-    this.id = id;
-  }
+	public State() {
+	}
 
-  public String getName() {
-    return name;
-  }
+	public int getId() {
+		return id;
+	}
 
-  public void setName(String name) {
-    this.name = name;
-  }
+	public void setId(int id) {
+		this.id = id;
+	}
 
-  public List<Goods> getGoods() {
-    return goods;
-  }
+	public String getName() {
+		return name;
+	}
 
-  public void setGoods(List<Goods> goods) {
-    this.goods = goods;
-  }
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public List<Goods> getGoods() {
+		return goods;
+	}
+
+	public void setGoods(List<Goods> goods) {
+		this.goods = goods;
+	}
 
 	@Override
 	public int hashCode() {

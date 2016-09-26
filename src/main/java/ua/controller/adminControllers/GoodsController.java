@@ -6,7 +6,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.propertyeditors.CustomCollectionEditor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
@@ -36,6 +35,7 @@ import ua.service.UserService;
 import ua.service.editors.BrandEditor;
 import ua.service.editors.CategoryEditor;
 import ua.service.editors.StateEditor;
+import ua.service.editors.TagCollectionEditor;
 import ua.service.editors.UserEditor;
 import ua.service.validators.adminValidators.GoodsValidator;
 
@@ -71,18 +71,7 @@ public class GoodsController {
 		binder.registerCustomEditor(Brand.class, new BrandEditor(brandService));
 		binder.registerCustomEditor(State.class, new StateEditor(stateService));
 		binder.registerCustomEditor(User.class, new UserEditor(userService));
-		binder.registerCustomEditor(List.class, "tags", new CustomCollectionEditor(List.class) {
-
-			@Override
-			protected Object convertElement(Object element) {
-				String tagId = (String) element;
-				if(tagId == null || tagId.isEmpty())
-					return null;
-				else
-					return tagService.findOne(Integer.parseInt(tagId));
-			}
-			
-		});
+		binder.registerCustomEditor(List.class, "tags", new TagCollectionEditor(List.class, tagService));
 	}
 
 	@InitBinder("goodsSaveForm")
