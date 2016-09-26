@@ -6,6 +6,7 @@ import java.util.List;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Expression;
+import javax.persistence.criteria.Join;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
@@ -16,14 +17,15 @@ import ua.DTO.FilterForms.IndexGoodsFilterForm;
 import ua.entity.Brand;
 import ua.entity.Category;
 import ua.entity.Goods;
+import ua.entity.Tag;
 
 public class IndexGoodsFilterAdapter implements Specification<Goods> {
 
 	private final IndexGoodsFilterForm form;
 	private final List<Specification<Goods>> filters;
-	
+
 	public IndexGoodsFilterAdapter(IndexGoodsFilterForm form) {
-		if(form != null)
+		if (form != null)
 			this.form = form;
 		else
 			this.form = new IndexGoodsFilterForm();
@@ -37,7 +39,7 @@ public class IndexGoodsFilterAdapter implements Specification<Goods> {
 		filterByAmount();
 		filterByBrand();
 		filterByCategory();
-//		filterByTag();
+		filterByTag();
 		if (!filters.isEmpty()) {
 			Specifications<Goods> specifications = Specifications.where(filters.get(0));
 			for (Specification<Goods> filter : filters) {
@@ -48,18 +50,15 @@ public class IndexGoodsFilterAdapter implements Specification<Goods> {
 		return null;
 	}
 
-	//TODO Filtering by tags
-//	private void filterByTag() {
-//		String tagSearch = form.getTagSearch();
-//		Tag tag = new Tag();
-//		tag.setName(tagSearch);
-//		if(tagSearch != null && !tagSearch.isEmpty()) {
-//			filters.add((root, query, cb) -> {
-//				Expression<List<Tag>> tagsExp = root.get("tags");
-//				return cb.isMember(tag, tagsExp);
-//			});
-//		}
-//	}
+	private void filterByTag() {
+		Tag tag = form.getTagSearch();
+		if (tag != null) {
+			filters.add((root, query, cb) -> {
+				Join<Goods, Tag> join = root.join("tags");
+				return cb.equal(join.get("id"), tag.getId());
+			});
+		}
+	}
 
 	private void filterByCategory() {
 		Category category = form.getCategorySearch();

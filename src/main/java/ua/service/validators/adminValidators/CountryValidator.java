@@ -15,7 +15,7 @@ public class CountryValidator implements Validator {
 	public CountryValidator(CountryService countryService) {
 		if (countryService == null)
 			throw new IllegalArgumentException("countryService = null");
-		this.countryService = new CountryService();
+		this.countryService = countryService;
 	}
 
 	@Override

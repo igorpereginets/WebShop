@@ -2,6 +2,7 @@ package ua.DTO.FilterForms;
 
 import ua.entity.Brand;
 import ua.entity.Category;
+import ua.entity.Tag;
 
 public class IndexGoodsFilterForm {
 
@@ -12,7 +13,7 @@ public class IndexGoodsFilterForm {
 	private Integer maxAmount;
 	private Brand brandSearch;
 	private Category categorySearch;
-	private String tagSearch;
+	private Tag tagSearch;
 
 	public String getNameSearch() {
 		return nameSearch;
@@ -71,12 +72,12 @@ public class IndexGoodsFilterForm {
 	}
 
 	
-	public String getTagSearch() {
+	public Tag getTagSearch() {
 		return tagSearch;
 	}
 
 	
-	public void setTagSearch(String tagSearch) {
+	public void setTagSearch(Tag tagSearch) {
 		this.tagSearch = tagSearch;
 	}
 

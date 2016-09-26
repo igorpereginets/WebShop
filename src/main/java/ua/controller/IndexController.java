@@ -16,12 +16,14 @@ import ua.DTO.FilterForms.IndexGoodsFilterForm;
 import ua.entity.Brand;
 import ua.entity.Category;
 import ua.entity.Goods;
+import ua.entity.Tag;
 import ua.service.BrandService;
 import ua.service.CategoryService;
 import ua.service.GoodsService;
 import ua.service.TagService;
 import ua.service.editors.BrandEditor;
 import ua.service.editors.CategoryEditor;
+import ua.service.editors.TagEditor;
 
 @Controller
 public class IndexController {
@@ -44,6 +46,7 @@ public class IndexController {
 	public void initBinder(WebDataBinder binder) {
 		binder.registerCustomEditor(Brand.class, new BrandEditor(brandService));
 		binder.registerCustomEditor(Category.class, new CategoryEditor(categoryService));
+		binder.registerCustomEditor(Tag.class, new TagEditor(tagService));
 	}
 
 	@RequestMapping("/")

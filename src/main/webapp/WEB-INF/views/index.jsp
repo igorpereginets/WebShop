@@ -103,7 +103,6 @@
 							<form:option value="">Choose Brand</form:option>
 							<form:options items="${brands}" itemLabel="name" itemValue="id" />
 						</form:select>
-<%-- 						<form:input type="search" path="brandSearch" class="form-control" placeholder="Search producer..." /> --%>
 					</div>
 					<div class="col-md-4 col-sm-12">
 						<form:select path="categorySearch" class="form-control">
@@ -118,12 +117,13 @@
 									</c:otherwise>
 								</c:choose>
 							</c:forEach>
-<%-- 							<form:options items="${categories}" itemLabel="name" itemValue="id"/> --%>
 						</form:select>
-<%-- 						<form:input type="search" path="categorySearch" class="form-control" placeholder="Search category..." /> --%>
 					</div>
 					<div class="col-md-4 col-sm-12">
-						<form:input type="search" path="tagSearch" class="form-control" placeholder="Search by tag..." />
+						<form:select path="tagSearch" class="form-control">
+							<form:option value="">Choose tag</form:option>
+							<form:options items="${tags}" itemLabel="name" itemValue="id"/>
+						</form:select>
 					</div>
 					<button type="submit" class="btn btn-primary pull-right">Search</button>
 				</form:form>
@@ -218,7 +218,7 @@
 			</div>
 			<div class="panel-body">
 				<c:forEach items="${tags}" var="tag">
-					<li class="list-group-item"><a href="?tagSearch=${tag.name}"> ${tag.name} </a></li>
+					<li class="list-group-item"><a href="?tagSearch=${tag.id}"> ${tag.name} </a></li>
 				</c:forEach>
 			</div>
 		</div>
