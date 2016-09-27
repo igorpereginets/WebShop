@@ -81,5 +81,10 @@
 		<put-attribute name="body" value="/WEB-INF/views/myGoods.jsp" />
 		<put-attribute name="current" value="myGoods" cascade="true" />
 	</definition>
+	
+	<definition name="personalInfo" extends="common">
+		<put-attribute name="body" value="/WEB-INF/views/personalInfo.jsp" />
+		<put-attribute name="current" value="personalInfo" cascade="true" />
+	</definition>
 
 </tiles-definitions>

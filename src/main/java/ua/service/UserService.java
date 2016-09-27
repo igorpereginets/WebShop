@@ -119,4 +119,8 @@ public class UserService {
 		return userRepository.save(user);
 	}
 
+	public User findByLoginWithAddress(String login) {
+		return userRepository.findByLoginWithAddress(login);
+	}
+
 }

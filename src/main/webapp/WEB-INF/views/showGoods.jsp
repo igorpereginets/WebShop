@@ -42,7 +42,7 @@
 		</div>
 	</div>
 	<div class="col-md-8">
-		<div class="row#!/usr/bin/env ">
+		<div class="row">
 			<div class="container-fluid">
 				<div class="content-wrapper">
 					<div class="item-container">

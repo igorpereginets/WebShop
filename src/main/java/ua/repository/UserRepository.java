@@ -21,4 +21,7 @@ public interface UserRepository extends CrudRepository<User, Integer>, JpaSpecif
 
 	User findByEmail(String email);
 
+	@Query("SELECT u FROM User u LEFT JOIN FETCH u.address WHERE u.login = ?1")
+	User findByLoginWithAddress(String login);
+
 }
