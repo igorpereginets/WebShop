@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="security"%>
+<%@ taglib prefix="tilesx" uri="http://tiles.apache.org/tags-tiles-extras"%>
+	<tilesx:useAttribute name="current" />
 <div class="row">
 	<div class="col-md-12">
 		<nav class="navbar navbar-default navbar-fixed-top">
@@ -12,9 +14,10 @@
 			</div>
 			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav">
-					<li class="active"><a href="/"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>Home</a></li>
+					<li class="${current == 'index' ? 'active' : ''}"><a href="/"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>Home</a></li>
 					<security:authorize access="isAuthenticated()">
-						<li><a href="/createGoods"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>Add Goods</a></li>
+						<li class="${current == 'createGoods' ? 'active' : ''}"><a href="/createGoods"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>Add Goods</a></li>
+						<li class="${current == 'myGoods' ? 'active' : ''}"><a href="/myGoods"><span class="glyphicon glyphicon-blackboard" aria-hidden="true"></span>My Goods</a></li>
 					</security:authorize>
 					<li><a href="#" role="button" data-toggle="modal" data-target=".about">About</a></li>
 					<li><a href="#" role="button" data-toggle="modal" data-target=".contact">Contact us</a></li>

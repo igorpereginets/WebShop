@@ -51,7 +51,7 @@ public class CreateGoodsController {
 		return new GoodsSaveForm();
 	}
 
-	@InitBinder
+	@InitBinder("goodsSaveForm")
 	public void initBinder(WebDataBinder binder) {
 		binder.registerCustomEditor(Category.class, new CategoryEditor(categoryService));
 		binder.registerCustomEditor(Brand.class, new BrandEditor(brandService));
@@ -75,5 +75,14 @@ public class CreateGoodsController {
 		goodsSaveForm.setUser(user);
 		goodsService.save(goodsSaveForm);
 		return "redirect:/";
+	}
+	
+	@RequestMapping("/myGoods")
+	public String showMyGoods(Principal principal, Model model) {
+		model.addAttribute("goods", goodsService.findByUserLogin(principal.getName()));
+		model.addAttribute("categories", categoryService.findAllWithGoodsCount());
+		model.addAttribute("brands", brandService.findAll());
+		model.addAttribute("tags", tagService.findAll());
+		return "myGoods";
 	}
 }

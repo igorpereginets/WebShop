@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="security"%>
 <div class="row content">
 	<div class="col-md-2">
 		<div class="panel panel-default">
@@ -63,34 +64,30 @@
 								<div class="product-price">${good.price}$</div>
 								<div class="product-stock">${good.state.name}</div>
 								<hr>
-								<div class="btn-group cart">
-									<button type="button" class="btn btn-success">Add to cart</button>
-								</div>
-								<div class="btn-group wishlist">
-									<button type="button" class="btn btn-danger">Add to wishlist</button>
-								</div>
+								<security:authorize access="isAuthenticated()">
+									<div class="btn-group cart">
+										<button type="button" class="btn btn-success">Add to cart</button>
+									</div>
+									<div class="btn-group wishlist">
+										<button type="button" class="btn btn-danger">Add to wishlist</button>
+									</div>
+								</security:authorize>
 							</div>
 						</div>
 					</div>
 					<div class="container-fluid">
 						<div class="col-md-12 product-info">
 							<ul id="myTab" class="nav nav-tabs nav_tabs">
-
 								<li class="active"><a href="#service-one" data-toggle="tab">DESCRIPTION</a></li>
 								<li><a href="#service-two" data-toggle="tab">PRODUCT INFO</a></li>
 								<li><a href="#service-three" data-toggle="tab">REVIEWS</a></li>
-
 							</ul>
 							<div id="myTabContent" class="tab-content">
 								<div class="tab-pane fade in active" id="service-one">
-
 									<section class="container product-info">${good.description}</section>
-
 								</div>
 								<div class="tab-pane fade" id="service-two">
-
 									<section class="container"></section>
-
 								</div>
 								<div class="tab-pane fade" id="service-three"></div>
 							</div>

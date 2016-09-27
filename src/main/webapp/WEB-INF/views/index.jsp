@@ -185,6 +185,7 @@
 						<ul class="dropdown-menu" aria-labelledby="sort">
 							<li <custom:isActive key="sort" value="name"/>><a href="<custom:allParams change="sort" value="name"/>"> Name</a></li>
 							<li <custom:isActive key="sort" value="price"/>><a href="<custom:allParams change="sort" value="price"/>"> Price</a></li>
+							<li <custom:isActive key="sort" value="begin"/>><a href="<custom:allParams change="sort" value="begin"/>"> Date</a></li>
 						</ul>
 					</div>
 					<div class="dropup pull-right size">

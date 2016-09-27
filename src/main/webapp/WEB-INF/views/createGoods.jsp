@@ -45,8 +45,8 @@
 		<div class="row">
 			<div class="container-fluid">
 				<div class="content-wrapper">
-					<form:form class="createForm" method="post" modelAttribute="goodsSaveForm" action="/createGoods"  enctype="multipart/form-data">
-						<form:hidden path="id"/>
+					<form:form class="createForm" method="post" modelAttribute="goodsSaveForm" action="/createGoods" enctype="multipart/form-data">
+						<form:hidden path="id" />
 						<div class="row">
 							<div class="col-sm-4">
 								<label>Name: </label>
@@ -102,14 +102,16 @@
 									<form:select path="state" class="createInput">
 										<form:option value="">Choose state</form:option>
 										<c:forEach items="${states}" var="state">
-											<c:choose>
-												<c:when test="${state.id eq goodsSaveForm.state.id}">
-													<form:option selected="selected" value="${state.id}">${state.name}</form:option>
-												</c:when>
-												<c:otherwise>
-													<form:option value="${state.id}">${state.name}</form:option>
-												</c:otherwise>
-											</c:choose>
+											<c:if test="${state.name ne 'Sold'}">
+												<c:choose>
+													<c:when test="${state.id eq goodsSaveForm.state.id}">
+														<form:option selected="selected" value="${state.id}">${state.name}</form:option>
+													</c:when>
+													<c:otherwise>
+														<form:option value="${state.id}">${state.name}</form:option>
+													</c:otherwise>
+												</c:choose>
+											</c:if>
 										</c:forEach>
 									</form:select>
 								</div>

@@ -3,6 +3,7 @@ package ua.service;
 import java.io.File;
 import java.io.IOException;
 import java.time.LocalDate;
+import java.util.List;
 
 import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -119,5 +120,11 @@ public class GoodsService {
 
 	public Goods findOne(int id) {
 		return goodsRepository.findOne(id);
+	}
+
+	public List<Goods> findByUserLogin(String login) {
+		if(login == null || login.isEmpty())
+			return null;
+		return goodsRepository.findByUserLogin(login);
 	}
 }
