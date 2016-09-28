@@ -19,6 +19,7 @@
 						<li class="${current == 'createGoods' ? 'active' : ''}"><a href="/createGoods"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>Add Goods</a></li>
 						<li class="${current == 'myGoods' ? 'active' : ''}"><a href="/myGoods"><span class="glyphicon glyphicon-blackboard" aria-hidden="true"></span>My Goods</a></li>
 						<li class="${current == 'personalInfo' ? 'active' : ''}"><a href="/myInfo"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>Personal Info</a></li>
+						<li class="${current == 'bucket' ? 'active' : ''}"><a href="/myBucket"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>My Bucket</a></li>
 					</security:authorize>
 					<li><a href="#" role="button" data-toggle="modal" data-target=".about">About</a></li>
 					<li><a href="#" role="button" data-toggle="modal" data-target=".contact">Contact us</a></li>

@@ -69,7 +69,7 @@ public class CategoryService {
 		return categoryRepository.findByName(name);
 	}
 
-	public List<CategoryAndCount> findAllWithGoodsCount() {
+	public List<CategoryAndCount> findAllWithGoodsCountNotSold() {
 		return categoryRepository.findAllWithGoodsCount();
 	}
 }

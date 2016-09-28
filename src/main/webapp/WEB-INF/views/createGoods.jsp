@@ -102,8 +102,7 @@
 						<div class="col-sm-8">
 							<form:input type="file" placeholder="Image" class="fileInput" path="file" />
 						</div>
-						<a type="button" href="/" class="btn btn-danger pull-right">Cancel</a>
-						<button type="submit" class="btn btn-success pull-right">Save</button>
+						<button type="submit" class="btn btn-lg btn-success pull-right">Save commodity</button>
 					</div>
 				</form:form>
 			</div>

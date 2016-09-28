@@ -1,25 +1,28 @@
 package ua.entity;
 
-import javax.persistence.Column;
+import java.io.Serializable;
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToOne;
 
 @Entity
-public class Bucket {
+public class Bucket implements Serializable {
 
+	private static final long serialVersionUID = -5454562825170012687L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	@Column(columnDefinition = "INT DEFAULT 1")
-	private int goodsAmount;
-	@ManyToOne(fetch = FetchType.EAGER)
+	@OneToOne(fetch = FetchType.EAGER)
 	private User user;
-	@ManyToOne(fetch = FetchType.EAGER)
-	private Goods good;
+	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
+	private List<Goods> goods;
 
 	public int getId() {
 		return id;
@@ -27,14 +30,6 @@ public class Bucket {
 
 	public void setId(int id) {
 		this.id = id;
-	}
-
-	public int getGoodsAmount() {
-		return goodsAmount;
-	}
-
-	public void setGoodsAmount(int goodsAmount) {
-		this.goodsAmount = goodsAmount;
 	}
 
 	public User getUser() {
@@ -45,12 +40,12 @@ public class Bucket {
 		this.user = user;
 	}
 
-	public Goods getGood() {
-		return good;
+	public List<Goods> getGoods() {
+		return goods;
 	}
 
-	public void setGood(Goods good) {
-		this.good = good;
+	public void setGoods(List<Goods> goods) {
+		this.goods = goods;
 	}
 
 }

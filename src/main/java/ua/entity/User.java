@@ -59,8 +59,8 @@ public class User implements UserDetails {
 
 	@OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
 	private List<Goods> goods;
-	@OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
-	private List<Bucket> buckets;
+	@OneToOne(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	private Bucket bucket;
 	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
 	private List<Goods> wishlist;
 
@@ -177,12 +177,12 @@ public class User implements UserDetails {
 		this.goods = goods;
 	}
 
-	public List<Bucket> getBuckets() {
-		return buckets;
+	public Bucket getBucket() {
+		return bucket;
 	}
 
-	public void setBuckets(List<Bucket> buckets) {
-		this.buckets = buckets;
+	public void setBucket(Bucket bucket) {
+		this.bucket = bucket;
 	}
 
 	public List<Goods> getWishlist() {

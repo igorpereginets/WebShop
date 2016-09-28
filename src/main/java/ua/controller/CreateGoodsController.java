@@ -20,6 +20,7 @@ import ua.entity.State;
 import ua.entity.Tag;
 import ua.entity.User;
 import ua.service.BrandService;
+import ua.service.BucketService;
 import ua.service.CategoryService;
 import ua.service.GoodsService;
 import ua.service.StateService;
@@ -46,6 +47,8 @@ public class CreateGoodsController {
 	private StateService stateService;
 	@Autowired
 	private GoodsService goodsService;
+	@Autowired
+	private BucketService bucketService;
 
 	@ModelAttribute("goodsSaveForm")
 	public GoodsSaveForm getSaveForm() {
@@ -62,11 +65,12 @@ public class CreateGoodsController {
 	}
 
 	@RequestMapping("/createGoods")
-	public String createGoods(Model model) {
-		model.addAttribute("categories", categoryService.findAllWithGoodsCount());
+	public String createGoods(Model model, Principal principal) {
+		model.addAttribute("categories", categoryService.findAllWithGoodsCountNotSold());
 		model.addAttribute("brands", brandService.findAll());
 		model.addAttribute("tags", tagService.findAll());
 		model.addAttribute("states", stateService.findAll());
+		model.addAttribute("bucketCount", bucketService.getGoodsCount(principal));
 		return "createGoods";
 	}
 
@@ -81,8 +85,9 @@ public class CreateGoodsController {
 	@RequestMapping("/myGoods")
 	public String showMyGoods(Principal principal, Model model) {
 		model.addAttribute("goods", goodsService.findByUserLogin(principal.getName()));
-		model.addAttribute("categories", categoryService.findAllWithGoodsCount());
+		model.addAttribute("categories", categoryService.findAllWithGoodsCountNotSold());
 		model.addAttribute("brands", brandService.findAll());
+		model.addAttribute("bucketCount", bucketService.getGoodsCount(principal));
 		model.addAttribute("tags", tagService.findAll());
 		return "myGoods";
 	}

@@ -93,5 +93,10 @@
 		<put-attribute name="body" value="/WEB-INF/views/personalInfo.jsp" />
 		<put-attribute name="current" value="personalInfo" cascade="true" />
 	</definition>
+	
+	<definition name="bucket" extends="common">
+		<put-attribute name="body" value="/WEB-INF/views/showBucket.jsp" />
+		<put-attribute name="current" value="bucket" cascade="true" />
+	</definition>
 
 </tiles-definitions>

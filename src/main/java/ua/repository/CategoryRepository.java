@@ -19,6 +19,8 @@ public interface CategoryRepository extends CrudRepository<Category, Integer>, J
 
 	Category findByName(String name);
 
+	//"SELECT new ua.DTO.CategoryAndCount(c.id, c.name, count(g.id)) FROM Category c LEFT JOIN c.goods g WHERE g.state.name <> 'SOLD' GROUP BY c.id"
+	//TODO create query to show only not sold goods
 	@Query("SELECT new ua.DTO.CategoryAndCount(c.id, c.name, count(g.id)) FROM Category c LEFT JOIN c.goods g GROUP BY c.id")
 	List<CategoryAndCount> findAllWithGoodsCount();
 

@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 import ua.DTO.RegistrationForm;
 import ua.DTO.FilterForms.adminFilter.UserFilterForm;
 import ua.DTO.SaveForms.UserSaveForm;
+import ua.entity.Bucket;
 import ua.entity.Role;
 import ua.entity.User;
 import ua.repository.UserRepository;
@@ -57,7 +58,12 @@ public class UserService {
 		user.setTelephone(userSaveForm.getTelephone());
 		user.setRole(Role.ROLE_USER);
 		user = userRepository.saveAndFlush(user);
-		
+
+		if (user.getBucket() == null) {
+			Bucket bucket = new Bucket();
+			bucket.setUser(user);
+			user.setBucket(bucket);
+		}
 		String pathToFile;
 		if (userSaveForm.getId() == 0)
 			pathToFile = fileWriter.save(Folder.USERS, userSaveForm.getFile(), user.getId());
@@ -67,7 +73,7 @@ public class UserService {
 			pathToFile = fileWriter.update(Folder.USERS, userSaveForm.getFile(), user.getId());
 
 		user.setPathToFile(pathToFile);
-		
+
 		return userRepository.save(user);
 	}
 
@@ -142,16 +148,29 @@ public class UserService {
 		}
 		user.setTelephone(registerUser.getTelephone());
 		user.setRole(Role.ROLE_USER);
+		Bucket bucket = new Bucket();
+		bucket.setUser(user);
+		user.setBucket(bucket);
 		user = userRepository.saveAndFlush(user);
-		
+
 		String pathToFile = fileWriter.save(Folder.USERS, null, user.getId());
 		user.setPathToFile(pathToFile);
-		
+
 		return userRepository.save(user);
 	}
 
 	public User findByLoginWithAddress(String login) {
 		return userRepository.findByLoginWithAddress(login);
+	}
+
+	public User findByLoginWithBucket(String login) {
+		if (login == null || login.isEmpty())
+			return null;
+		return userRepository.findByLoginWithBucket(login);
+	}
+
+	public User save(User user) {
+		return userRepository.save(user);
 	}
 
 }

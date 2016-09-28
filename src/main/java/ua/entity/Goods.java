@@ -1,5 +1,6 @@
 package ua.entity;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -12,13 +13,13 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 
 import org.hibernate.annotations.Type;
 
 @Entity
-public class Goods {
+public class Goods implements Serializable {
 
+	private static final long serialVersionUID = 4395021971342041035L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
@@ -46,7 +47,7 @@ public class Goods {
 	private Brand brand;
 	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
 	private List<Tag> tags;
-	@OneToMany(mappedBy = "good", fetch = FetchType.LAZY)
+	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "goods")
 	private List<Bucket> buckets;
 
 	@ManyToOne
@@ -188,6 +189,28 @@ public class Goods {
 
 	public void setUsersWishlist(List<User> usersWishlist) {
 		this.usersWishlist = usersWishlist;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + id;
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Goods other = (Goods) obj;
+		if (id != other.id)
+			return false;
+		return true;
 	}
 
 }

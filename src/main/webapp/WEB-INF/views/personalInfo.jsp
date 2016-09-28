@@ -5,13 +5,13 @@
 		<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 			<div class="panel panel-info">
 				<div class="panel-heading">
-					<h3 class="panel-title">${user.firstName}${user.lastName} Profile</h3>
+					<h3 class="panel-title">${user.firstName} ${user.lastName} Profile</h3>
 				</div>
 				<div class="panel-body">
 					<div class="row">
 						<div class="col-lg-3 " align="center">
 							<a href="${user.pathToFile}" data-lightbox="image-1" data-title="${user.firstName} ${user.lastName}"> <img id="item-display"
-								alt="${user.firstName }" src="${user.pathToFile}" class="img-circle img-responsive"></a>
+								alt="${user.firstName}" src="${user.pathToFile}" class="img-circle img-responsive"></a>
 						</div>
 						<div class=" col-md-9 col-lg-9 ">
 							<table class="table table-responsive">
@@ -36,16 +36,16 @@
 										<td>Gender:</td>
 										<td><c:choose>
 												<c:when test="${user.gender}">
-														Female
+														Male
 													</c:when>
 												<c:otherwise>
-														Male
+														Female
 													</c:otherwise>
 											</c:choose></td>
 									</tr>
 									<tr>
 										<td>Home Address:</td>
-										<td>${user.address.street},${user.address.city.name}</td>
+										<td>${user.address.street}, ${user.address.city.name} ${user.address.city.country.name}</td>
 									</tr>
 									<tr>
 										<td>Email:</td>
@@ -65,7 +65,6 @@
 									</tr>
 								</tbody>
 							</table>
-							<a href="" class="btn btn-primary">Edit information</a> <a href="" class="btn btn-primary">Change password</a>
 						</div>
 					</div>
 				</div>

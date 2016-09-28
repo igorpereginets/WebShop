@@ -18,6 +18,6 @@ public interface GoodsRepository extends JpaSpecificationExecutor<Goods>, JpaRep
 
 	@Query("SELECT g FROM Goods g LEFT JOIN FETCH g.tags WHERE g.id = ?1")
 	Goods findOneWithTags(int id);
-	
+
 	List<Goods> findByUserLogin(String login);
 }

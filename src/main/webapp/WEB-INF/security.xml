@@ -8,10 +8,12 @@
 		<intercept-url pattern="/admin/**" access="hasRole('ADMIN')" />
 		<intercept-url pattern="/createGoods" access="isAuthenticated()" />
 		<intercept-url pattern="/myGoods" access="isAuthenticated()" />
+		<intercept-url pattern="/myInfo" access="isAuthenticated()" />
+		<intercept-url pattern="/myBucket" access="isAuthenticated()" />
 		<form-login login-page="/login" login-processing-url="/login" authentication-failure-url="/login?fail=true" />
 		<logout logout-url="/logout" logout-success-url="/" />
 		<csrf />
-		<remember-me key="jgisjfdgkldsj" />
+		<remember-me key="myAppKey"/>
 	</http>
 
 	<beans:bean class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder" id="encoder" />

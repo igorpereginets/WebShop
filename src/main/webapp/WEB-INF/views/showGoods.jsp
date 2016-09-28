@@ -26,7 +26,7 @@
 							<hr>
 							<security:authorize access="isAuthenticated()">
 								<div class="btn-group cart">
-									<button type="button" class="btn btn-success">Add to cart</button>
+									<a type="button" class="btn btn-success" href="/toBucket/${good.id}">Add to bucket</a>
 								</div>
 								<div class="btn-group wishlist">
 									<button type="button" class="btn btn-danger">Add to wishlist</button>

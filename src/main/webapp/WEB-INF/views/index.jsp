@@ -4,7 +4,7 @@
 <%@ taglib prefix="custom" uri="/WEB-INF/custom.tld"%>
 
 <%@ include file="/WEB-INF/layout/slider.jsp"%>
-<%@ include file="/WEB-INF/layout/leftSidebar.jsp" %>
+<%@ include file="/WEB-INF/layout/leftSidebar.jsp"%>
 <div class="col-md-8">
 	<div class="panel panel-default">
 		<div class="panel-heading">
@@ -63,16 +63,15 @@
 		<c:forEach items="${page.content}" var="good">
 			<div class="col-md-6 col-lg-4">
 				<div class="thumbnail">
-					<a href="/showGoods/${good.id}" class="commodity"> <img class="goodsPhoto" src="${good.pathToFile}" alt="${good.name}">
-						<div class="caption">
-							<h5>${good.name}</h5>
-							<p class="description">${good.shortDescription}</p>
-							<p class="pull-left price">${good.price}$</p>
-							<p class="text-right toBucket">
-								<button class="btn btn-primary" role="button">To bucket</button>
-							</p>
-						</div>
-					</a>
+					<a href="/showGoods/${good.id}" class="commodity"> <img class="goodsPhoto" src="${good.pathToFile}" alt="${good.name}"></a>
+					<div class="caption">
+						<h5>${good.name}</h5>
+						<p class="description">${good.shortDescription}</p>
+						<p class="pull-left price">${good.price}$</p>
+						<p class="text-right toBucket">
+							<a class="btn btn-primary" href="/showGoods/${good.id}">View</a>
+						</p>
+					</div>
 				</div>
 			</div>
 		</c:forEach>
