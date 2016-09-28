@@ -16,7 +16,11 @@
 	<script src="/resources/js/lightbox.min.js"></script>
 	<div class="container-fluid">
 		<tiles:insertAttribute name="header" />
-		<tiles:insertAttribute name="body" />
+		<div class="row content">
+			<tiles:insertAttribute name="left-sidebar" />
+			<tiles:insertAttribute name="body" />
+			<tiles:insertAttribute name="right-sidebar" />
+		</div>
 	</div>
 </body>
 </html>

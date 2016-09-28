@@ -1,5 +1,7 @@
 package ua.DTO.SaveForms;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import ua.entity.Address;
 
 public class UserSaveForm {
@@ -15,6 +17,8 @@ public class UserSaveForm {
 	private String birthday;
 	private double money;
 	private double rate;
+	private String pathToFile;
+	private MultipartFile file;
 
 	private Address address;
 
@@ -112,5 +116,21 @@ public class UserSaveForm {
 
 	public void setAddress(Address address) {
 		this.address = address;
+	}
+
+	public String getPathToFile() {
+		return pathToFile;
+	}
+
+	public void setPathToFile(String pathToFile) {
+		this.pathToFile = pathToFile;
+	}
+
+	public MultipartFile getFile() {
+		return file;
+	}
+
+	public void setFile(MultipartFile file) {
+		this.file = file;
 	}
 }

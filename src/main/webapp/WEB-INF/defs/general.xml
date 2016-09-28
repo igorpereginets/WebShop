@@ -6,6 +6,8 @@
 	<!-- Some templates -->
 	<definition name="common" template="/WEB-INF/layout/classic.jsp">
 		<put-attribute name="header" value="/WEB-INF/layout/header.jsp" />
+		<put-attribute name="left-sidebar" value="/WEB-INF/layout/leftSidebar.jsp" />
+		<put-attribute name="right-sidebar" value="/WEB-INF/layout/rightSidebar.jsp" />
 		<put-attribute name="title" value="elimSShop" />
 		<put-attribute name="current" value="index" cascade="true" />
 	</definition>
@@ -17,47 +19,48 @@
 
 	<definition name="index" extends="common">
 		<put-attribute name="body" value="/WEB-INF/views/index.jsp" />
+		<put-attribute name="left-sidebar" value="" />
 	</definition>
 
 	<definition name="countries" extends="adminka">
-		<put-attribute name="body" value="/WEB-INF/views/countries.jsp" />
+		<put-attribute name="body" value="/WEB-INF/views/adminViews/countries.jsp" />
 		<put-attribute name="current" value="countries" />
 	</definition>
 
 	<definition name="cities" extends="adminka">
-		<put-attribute name="body" value="/WEB-INF/views/cities.jsp" />
+		<put-attribute name="body" value="/WEB-INF/views/adminViews/cities.jsp" />
 	</definition>
 
 	<definition name="address" extends="adminka">
-		<put-attribute name="body" value="/WEB-INF/views/address.jsp" />
+		<put-attribute name="body" value="/WEB-INF/views/adminViews/address.jsp" />
 	</definition>
 
 	<definition name="users" extends="adminka">
-		<put-attribute name="body" value="/WEB-INF/views/users.jsp" />
+		<put-attribute name="body" value="/WEB-INF/views/adminViews/users.jsp" />
 	</definition>
 
 	<definition name="categories" extends="adminka">
-		<put-attribute name="body" value="/WEB-INF/views/categories.jsp" />
+		<put-attribute name="body" value="/WEB-INF/views/adminViews/categories.jsp" />
 	</definition>
 
 	<definition name="states" extends="adminka">
-		<put-attribute name="body" value="/WEB-INF/views/states.jsp" />
+		<put-attribute name="body" value="/WEB-INF/views/adminViews/states.jsp" />
 	</definition>
 
 	<definition name="brands" extends="adminka">
-		<put-attribute name="body" value="/WEB-INF/views/brands.jsp" />
+		<put-attribute name="body" value="/WEB-INF/views/adminViews/brands.jsp" />
 	</definition>
 
 	<definition name="goods" extends="adminka">
-		<put-attribute name="body" value="/WEB-INF/views/goods.jsp" />
+		<put-attribute name="body" value="/WEB-INF/views/adminViews/goods.jsp" />
 	</definition>
 
 	<definition name="tags" extends="adminka">
-		<put-attribute name="body" value="/WEB-INF/views/tags.jsp" />
+		<put-attribute name="body" value="/WEB-INF/views/adminViews/tags.jsp" />
 	</definition>
 
 	<definition name="buckets" extends="adminka">
-		<put-attribute name="body" value="/WEB-INF/views/buckets.jsp" />
+		<put-attribute name="body" value="/WEB-INF/views/adminViews/buckets.jsp" />
 	</definition>
 
 	<definition name="showGoods" extends="common">
@@ -66,10 +69,14 @@
 
 	<definition name="login" extends="common">
 		<put-attribute name="body" value="/WEB-INF/views/login.jsp" />
+		<put-attribute name="left-sidebar" value="" />
+		<put-attribute name="right-sidebar" value="" />
 	</definition>
 
 	<definition name="registration" extends="common">
 		<put-attribute name="body" value="/WEB-INF/views/registration.jsp" />
+		<put-attribute name="left-sidebar" value="" />
+		<put-attribute name="right-sidebar" value="" />
 	</definition>
 
 	<definition name="createGoods" extends="common">

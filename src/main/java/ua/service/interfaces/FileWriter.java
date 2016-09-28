@@ -7,7 +7,7 @@ import org.springframework.web.multipart.MultipartFile;
 public interface FileWriter {
 
 	enum Folder {
-		GOODS
+		GOODS, USERS;
 	}
 	
 	String save(Folder folder, MultipartFile file, int id);

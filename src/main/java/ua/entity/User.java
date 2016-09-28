@@ -50,6 +50,8 @@ public class User implements UserDetails {
 	@Column(nullable = false, columnDefinition = "DOUBLE DEFAULT 0")
 	private double rate;
 
+	private String pathToFile;
+
 	@Enumerated
 	private Role role;
 	@OneToOne(fetch = FetchType.LAZY)
@@ -221,6 +223,14 @@ public class User implements UserDetails {
 	@Override
 	public boolean isEnabled() {
 		return true;
+	}
+
+	public String getPathToFile() {
+		return pathToFile;
+	}
+
+	public void setPathToFile(String pathToFile) {
+		this.pathToFile = pathToFile;
 	}
 
 }

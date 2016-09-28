@@ -24,7 +24,7 @@ public class FileWriterImpl implements FileWriter {
 		if(id <= 0)
 			throw new IllegalArgumentException("id must be > 0");
 		
-		if (!file.isEmpty() && file != null) {
+		if (file != null && !file.isEmpty()) {
 			String fileName = getFileName(id, getExtension(file));
 			String rootPath = getRootPath(folder, id);
 
@@ -44,12 +44,13 @@ public class FileWriterImpl implements FileWriter {
 
 	@Override
 	public String update(Folder folder, MultipartFile file, int id) {
-		if (!file.isEmpty()) {
+		if (file != null && !file.isEmpty()) {
 			String fileName = getFileName(id, getExtension(file));
 			String rootPath = getRootPath(folder, id);
 
 			File pathToFolder = new File(PATH_TO_HOME, rootPath);
 			File pathToFile = new File(pathToFolder, File.separator + fileName);
+			createIfNotExists(pathToFolder);
 			try {
 				FileUtils.cleanDirectory(pathToFolder);
 				file.transferTo(pathToFile);

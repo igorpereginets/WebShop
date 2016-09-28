@@ -1,7 +1,10 @@
 package ua.service;
 
+import java.io.File;
+import java.io.IOException;
 import java.time.LocalDate;
 
+import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -14,6 +17,8 @@ import ua.DTO.SaveForms.UserSaveForm;
 import ua.entity.Role;
 import ua.entity.User;
 import ua.repository.UserRepository;
+import ua.service.interfaces.FileWriter;
+import ua.service.interfaces.FileWriter.Folder;
 import ua.service.specification.adminFilterAdapter.UserFilterAdapter;
 
 @Service
@@ -23,6 +28,8 @@ public class UserService {
 	private UserRepository userRepository;
 	@Autowired
 	private BCryptPasswordEncoder encoder;
+	@Autowired
+	private FileWriter fileWriter;
 
 	public Iterable<User> findAll() {
 		return userRepository.findAll();
@@ -49,6 +56,18 @@ public class UserService {
 		user.setRate(userSaveForm.getRate());
 		user.setTelephone(userSaveForm.getTelephone());
 		user.setRole(Role.ROLE_USER);
+		user = userRepository.saveAndFlush(user);
+		
+		String pathToFile;
+		if (userSaveForm.getId() == 0)
+			pathToFile = fileWriter.save(Folder.USERS, userSaveForm.getFile(), user.getId());
+		else if (userSaveForm.getFile().isEmpty())
+			pathToFile = userSaveForm.getPathToFile();
+		else
+			pathToFile = fileWriter.update(Folder.USERS, userSaveForm.getFile(), user.getId());
+
+		user.setPathToFile(pathToFile);
+		
 		return userRepository.save(user);
 	}
 
@@ -71,10 +90,17 @@ public class UserService {
 		userSaveForm.setPassword(user.getPassword());
 		userSaveForm.setRate(user.getRate());
 		userSaveForm.setTelephone(user.getTelephone());
+		userSaveForm.setPathToFile(user.getPathToFile());
 		return userSaveForm;
 	}
 
 	public void delete(int id) {
+		File pathToFolder = fileWriter.getPathToFolder(Folder.USERS, id);
+		try {
+			FileUtils.deleteDirectory(pathToFolder);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 		userRepository.delete(id);
 	}
 
@@ -116,6 +142,11 @@ public class UserService {
 		}
 		user.setTelephone(registerUser.getTelephone());
 		user.setRole(Role.ROLE_USER);
+		user = userRepository.saveAndFlush(user);
+		
+		String pathToFile = fileWriter.save(Folder.USERS, null, user.getId());
+		user.setPathToFile(pathToFile);
+		
 		return userRepository.save(user);
 	}
 

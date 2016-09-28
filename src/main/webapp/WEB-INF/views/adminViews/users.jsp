@@ -175,8 +175,9 @@
 			</div>
 			<div class="modal-body">
 				<div class="form-style-8">
-					<form:form action="/admin/users" method="post" id="save" modelAttribute="userSaveForm">
+					<form:form action="/admin/users" method="post" id="save" modelAttribute="userSaveForm" enctype="multipart/form-data">
 						<form:hidden path="id" />
+						<form:hidden path="pathToFile" />
 						<form:errors path="email" />
 						<form:input type="email" path="email" placeholder="E-mail" required="true" maxlength="40" />
 						<form:errors path="password" />
@@ -221,6 +222,7 @@
 									</c:otherwise>
 								</c:choose>
 							</c:forEach>
+							<form:input type="file" path="file" />
 						</form:select>
 					</form:form>
 				</div>
