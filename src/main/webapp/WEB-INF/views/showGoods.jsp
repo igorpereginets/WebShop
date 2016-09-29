@@ -25,12 +25,14 @@
 							<div class="product-stock">${good.state.name}</div>
 							<hr>
 							<security:authorize access="isAuthenticated()">
-								<div class="btn-group cart">
-									<a type="button" class="btn btn-success" href="/toBucket/${good.id}">Add to bucket</a>
-								</div>
-								<div class="btn-group wishlist">
-									<button type="button" class="btn btn-danger">Add to wishlist</button>
-								</div>
+								<c:if test="${pageContext.request.userPrincipal.name ne good.user.login}">
+									<div class="btn-group cart">
+										<a type="button" class="btn btn-success" href="/toBucket/${good.id}">Add to bucket</a>
+									</div>
+									<div class="btn-group wishlist">
+										<button type="button" class="btn btn-danger">Add to wishlist</button>
+									</div>
+								</c:if>
 							</security:authorize>
 						</div>
 					</div>

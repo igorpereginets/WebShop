@@ -17,7 +17,6 @@ import ua.entity.Tag;
 import ua.service.BrandService;
 import ua.service.BucketService;
 import ua.service.CategoryService;
-import ua.service.GoodsService;
 import ua.service.TagService;
 import ua.service.editors.BrandEditor;
 import ua.service.editors.CategoryEditor;
@@ -34,8 +33,6 @@ public class BucketIndexController {
 	private TagService tagService;
 	@Autowired
 	private BucketService bucketService;
-	@Autowired
-	private GoodsService goodsService;
 
 	@InitBinder
 	public void initBinder(WebDataBinder binder) {
@@ -43,7 +40,7 @@ public class BucketIndexController {
 		binder.registerCustomEditor(Category.class, new CategoryEditor(categoryService));
 		binder.registerCustomEditor(Tag.class, new TagEditor(tagService));
 	}
-	
+
 	@RequestMapping("/toBucket/{id}")
 	public String toBucket(@PathVariable int id, Principal principal) {
 		bucketService.addGoods(id, principal.getName());
@@ -63,9 +60,7 @@ public class BucketIndexController {
 
 	@RequestMapping("/removeFromBucket/{id}")
 	public String removeFromBucket(@PathVariable int id, Principal principal) {
-		Bucket bucket = bucketService.findByUserLogin(principal.getName());
-		bucket.getGoods().remove(goodsService.findOne(id));
-		bucketService.save(bucket);
+		bucketService.removeFromBucket(id, principal.getName());
 		return "redirect:/myBucket";
 	}
 

@@ -34,8 +34,11 @@ public class BucketService {
 	public Bucket addGoods(int id, String login) {
 		Goods goods = goodsService.findOne(id);
 		Bucket bucket = findByUserLogin(login);
-		bucket.getGoods().add(goods);
-		return save(bucket);
+		if(goods.getUser().getLogin().equals(goods.getUser().getLogin())) {
+			bucket.getGoods().add(goods);
+			return save(bucket);
+		}
+		return bucket;
 	}
 	
 	@Transactional
@@ -44,7 +47,7 @@ public class BucketService {
 		Goods goods = goodsService.findOne(goodsId);
 		Bucket bucket = findByUserLogin(login);
 		
-		if(user.getMoney() >= goods.getPrice()) {
+		if(user.getMoney() >= goods.getPrice() && !user.getLogin().equals(goods.getUser().getLogin())) {
 			user.setMoney(user.getMoney() - goods.getPrice());
 			goods.setState(stateService.findByName("SOLD"));
 			goods.setActive(false);
@@ -59,5 +62,11 @@ public class BucketService {
 		if(principal != null)
 			return bucketRepository.countGoods(principal.getName());
 		return 0;
+	}
+	
+	public Bucket removeFromBucket(int goodsId, String login) {
+		Bucket bucket = findByUserLogin(login);
+		bucket.getGoods().remove(goodsService.findOne(goodsId));
+		return save(bucket);
 	}
 }

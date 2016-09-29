@@ -18,6 +18,8 @@ import ua.DTO.FilterForms.IndexGoodsFilterForm;
 import ua.DTO.FilterForms.adminFilter.GoodsFilterForm;
 import ua.DTO.SaveForms.GoodsSaveForm;
 import ua.entity.Goods;
+import ua.entity.Role;
+import ua.entity.User;
 import ua.repository.GoodsRepository;
 import ua.service.interfaces.FileWriter;
 import ua.service.interfaces.FileWriter.Folder;
@@ -31,6 +33,8 @@ public class GoodsService {
 	private GoodsRepository goodsRepository;
 	@Autowired
 	private FileWriter fileWriter;
+	@Autowired
+	private UserService userService;
 
 	public Iterable<Goods> findAll() {
 		return goodsRepository.findAll();
@@ -107,6 +111,13 @@ public class GoodsService {
 		}
 		goodsRepository.delete(id);
 	}
+	
+	public void delete(int id, String login) {
+		User user = userService.findByLogin(login);
+		Goods goods = findOne(id);
+		if(goods.getUser().getLogin().equals(login) || user.getRole().equals(Role.ROLE_ADMIN))
+			delete(id);
+	}
 
 	public Page<Goods> findAll(Pageable pageable) {
 		return goodsRepository.findAll(pageable);
@@ -144,5 +155,11 @@ public class GoodsService {
 
 	public Goods save(Goods goods) {
 		return goodsRepository.save(goods);
+	}
+	
+	public Goods save(GoodsSaveForm form, String login) {
+		User user = userService.findByLogin(login);
+		form.setUser(user);
+		return save(form);
 	}
 }

@@ -9,7 +9,7 @@
 		<label for="inputPassword" class="sr-only">Password</label> <input type="password" id="inputPassword" name="password" class="form-control" placeholder="Password"
 			required>
 		<div class="checkbox">
-			<label> <input type="checkbox" name="_spring_security_remember_me"> Remember me
+			<label> <input type="checkbox" name="remember-me"> Remember me
 			</label>
 		</div>
 		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" class="form-control" />

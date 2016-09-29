@@ -18,14 +18,12 @@ import ua.entity.Brand;
 import ua.entity.Category;
 import ua.entity.State;
 import ua.entity.Tag;
-import ua.entity.User;
 import ua.service.BrandService;
 import ua.service.BucketService;
 import ua.service.CategoryService;
 import ua.service.GoodsService;
 import ua.service.StateService;
 import ua.service.TagService;
-import ua.service.UserService;
 import ua.service.editors.BrandEditor;
 import ua.service.editors.CategoryEditor;
 import ua.service.editors.StateEditor;
@@ -41,8 +39,6 @@ public class CreateGoodsController {
 	private BrandService brandService;
 	@Autowired
 	private TagService tagService;
-	@Autowired
-	private UserService userService;
 	@Autowired
 	private StateService stateService;
 	@Autowired
@@ -76,12 +72,10 @@ public class CreateGoodsController {
 
 	@RequestMapping(value = "/createGoods", method = RequestMethod.POST)
 	public String saveGoods(@ModelAttribute("goodsSaveForm") GoodsSaveForm goodsSaveForm, Principal principal) {
-		User user = userService.findByLogin(principal.getName());
-		goodsSaveForm.setUser(user);
-		goodsService.save(goodsSaveForm);
+		goodsService.save(goodsSaveForm, principal.getName());
 		return "redirect:/";
 	}
-	
+
 	@RequestMapping("/myGoods")
 	public String showMyGoods(Principal principal, Model model) {
 		model.addAttribute("goods", goodsService.findByUserLogin(principal.getName()));
@@ -91,10 +85,10 @@ public class CreateGoodsController {
 		model.addAttribute("tags", tagService.findAll());
 		return "myGoods";
 	}
-	
+
 	@RequestMapping("/deleteGoods/{id}")
-	public String deleteGoods(@PathVariable int id) {
-		goodsService.delete(id);
+	public String deleteGoods(@PathVariable int id, Principal principal) {
+		goodsService.delete(id, principal.getName());
 		return "redirect:/myGoods";
 	}
 }
