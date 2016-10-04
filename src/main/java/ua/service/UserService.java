@@ -31,6 +31,8 @@ public class UserService {
 	private BCryptPasswordEncoder encoder;
 	@Autowired
 	private FileWriter fileWriter;
+	@Autowired
+	private MailSender sender;
 
 	public Iterable<User> findAll() {
 		return userRepository.findAll();
@@ -156,6 +158,7 @@ public class UserService {
 		String pathToFile = fileWriter.save(Folder.USERS, null, user.getId());
 		user.setPathToFile(pathToFile);
 
+		sender.sendMail("Hello", user.getEmail(), "You have been successfully registered on our web-site");
 		return userRepository.save(user);
 	}
 
